@@ -41,4 +41,9 @@ To get started with the Catalog Project, follow these steps:
    cd frontend
    npm install
    ng serve
+3. Set up the backend:
+   ```bash
+   cd backend
+   mvn spring-boot:run
+
 
