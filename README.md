@@ -36,3 +36,9 @@ To get started with the Catalog Project, follow these steps:
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/catalog-project.git
+2. Set up the frontend:
+   ```bash
+   cd frontend
+   npm install
+   ng serve
+
