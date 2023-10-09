@@ -35,7 +35,7 @@ To get started with the Catalog Project, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/catalog-project.git
+   git clone https://github.com/likhith1101/catalog-project.git
 2. Set up the frontend:
    ```bash
    cd frontend
@@ -46,8 +46,8 @@ To get started with the Catalog Project, follow these steps:
    cd backend
    mvn spring-boot:run
 4. Access the application:
-   Frontend: [http://localhost:4200](#4200link)
-   Backend: [http://localhost:8080](#8080link)
+   - Frontend: [http://localhost:4200](#4200link)
+   - Backend: [http://localhost:8080](#8080link)
 
 ## Project Structure
 
@@ -64,5 +64,10 @@ User Authentication: Register, log in, and log out.
   * Feature Management: Add, edit, and delete features under products with fields for Name, Internal Name, and Details.
   * Parameter Management: Add, edit, and delete parameters under features with fields for Name, Internal Name, Parameter Type, and Details (limited to quantity, price, or other).
   * Hierarchy View: View the hierarchy of products, features, and parameters in a tree structure.
+
+## API Documentation
+
+API documentation is available using Swagger. Access the Swagger UI to test and explore the APIs:
+  -Swagger UI: [http://localhost:8080/swagger-ui.html](#swagger)
 
 
