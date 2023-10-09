@@ -9,9 +9,7 @@ Catalog Project is a web-based catalog management system that allows users to ma
 - [Project Structure](#project-structure)
 - [Features](#features)
 - [API Documentation](#api-documentation)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## Technologies Used
 
