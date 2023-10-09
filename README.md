@@ -57,7 +57,7 @@ The project structure is organized as follows:
 
 ## Features
 
-User Authentication: Register, log in, and log out.
+  * User Authentication: Register, log in, and log out.
   * Product Management: Add, edit, and delete products with fields for Name, Internal Name, and Details.
   * Feature Management: Add, edit, and delete features under products with fields for Name, Internal Name, and Details.
   * Parameter Management: Add, edit, and delete parameters under features with fields for Name, Internal Name, Parameter Type, and Details (limited to quantity, price, or other).
