@@ -45,5 +45,24 @@ To get started with the Catalog Project, follow these steps:
    ```bash
    cd backend
    mvn spring-boot:run
+4. Access the application:
+   Frontend: [http://localhost:4200](#4200link)
+   Backend: [http://localhost:8080](#8080link)
+
+## Project Structure
+
+The project structure is organized as follows:
+  * frontend/: Contains the Angular frontend code.
+  * backend/: Contains the Spring Boot backend code.
+  * docs/: Documentation and resources.
+  * sql/: Database schema and initialization scripts.
+
+## Features
+
+User Authentication: Register, log in, and log out.
+  * Product Management: Add, edit, and delete products with fields for Name, Internal Name, and Details.
+  * Feature Management: Add, edit, and delete features under products with fields for Name, Internal Name, and Details.
+  * Parameter Management: Add, edit, and delete parameters under features with fields for Name, Internal Name, Parameter Type, and Details (limited to quantity, price, or other).
+  * Hierarchy View: View the hierarchy of products, features, and parameters in a tree structure.
 
 
