@@ -68,6 +68,26 @@ The project structure is organized as follows:
 API documentation is available using Swagger. Access the Swagger UI to test and explore the APIs:
   - Swagger UI: [http://localhost:8080/swagger-ui.html](#swagger)
 
+## Unit Testing
+
+We follow a robust unit testing approach to ensure the reliability and correctness of our code. Our unit tests cover the following components:
+
+- Component 1: Description of what this component does.
+  - Provide specific details about the tests conducted for this component.
+- Component 2: Description of what this component does.
+  - Provide specific details about the tests conducted for this component.
+  
+### Running Unit Tests
+
+To run the unit tests locally, follow these steps:
+
+1. Navigate to the project's root directory.
+2. Open a terminal and run the following command:
+
+   ```bash
+   command-to-run-unit-tests
+
+
 ## Author
   Gaddam Likhitheshwar
 
