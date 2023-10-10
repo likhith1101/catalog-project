@@ -85,7 +85,8 @@ To run the unit tests locally, follow these steps:
 2. Open a terminal and run the following command:
 
    ```bash
-   command-to-run-unit-tests
+   mvn test
+
 
 
 ## Author
