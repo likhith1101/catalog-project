@@ -86,9 +86,6 @@ To run the unit tests locally, follow these steps:
 
    ```bash
    mvn test
-
-
-
 ## Author
   Gaddam Likhitheshwar
 
