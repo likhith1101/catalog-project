@@ -9,6 +9,8 @@ Catalog Project is a web-based catalog management system that allows users to ma
 - [Project Structure](#project-structure)
 - [Features](#features)
 - [API Documentation](#api-documentation)
+- [Unit Testing](#unit)
+- [UX Testing](#ux)
 
 
 ## Technologies Used
@@ -86,7 +88,7 @@ To run the unit tests locally, follow these steps:
 2. Open a terminal and run the following command:
 
    ```bash
-   mvn test
+   ./mvnw test
    
 ## UX Testing
 
