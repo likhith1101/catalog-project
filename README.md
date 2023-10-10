@@ -86,7 +86,27 @@ To run the unit tests locally, follow these steps:
 
    ```bash
    mvn test
-## Author
-  Gaddam Likhitheshwar
+   
+## UX Testing
+
+User experience (UX) testing is a crucial aspect of our project to ensure a seamless and user-friendly interface. We conduct UX testing to gather feedback and make improvements in the following areas:
+
+- **Usability:** Ensuring the application is intuitive and easy to navigate.
+- **Accessibility:** Confirming the application meets accessibility standards.
+- **Performance:** Testing the application's responsiveness and load times.
+- **Compatibility:** Ensuring compatibility across various browsers and devices.
+
+### How We Conduct UX Testing
+
+We follow a structured approach to UX testing:
+
+1. **Test Scenarios:** We create test scenarios that reflect real-world user interactions with the application. These scenarios cover typical user tasks and workflows.
+
+2. **Test Participants:** We select a diverse group of test participants representing our target audience. This includes individuals with different backgrounds, skills, and abilities.
+
+3. **Testing Environment:** Testing is conducted in a controlled environment to monitor user interactions and gather feedback effectively.
+
+4. **Recording Feedback:** We use screen recording and user feedback forms to capture user actions, comments, and suggestions during the testing process.
+
 
 
