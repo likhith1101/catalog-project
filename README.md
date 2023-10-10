@@ -42,7 +42,8 @@ To get started with the Catalog Project, follow these steps:
 3. Set up the backend:
    ```bash
    cd backend
-   mvn spring-boot:run
+   ./mvnw clean
+   ./mvnw install
 4. Access the application:
    * Frontend: [http://localhost:4200](#4200link)
    * Backend: [http://localhost:8080](#8080link)
