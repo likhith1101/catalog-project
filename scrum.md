@@ -2,31 +2,27 @@
 
 ## To Do
 - [ ] Task 1
-  - Description: Write user stories
-  - Assignee: @username
-  - Due Date: 2023-10-20
-  - Labels: Bug
+  - Description: Need to add summary page in hierarchal form products -> features -> parameters
+  - Assignee: @likhith1101
+  - Due Date: 2023-10-17
 - [ ] Task 2
-  - Description: Create wireframes
-  - Assignee: @anotheruser
-  - Due Date: 2023-10-25
-  - Labels: Enhancement
+  - Description: Need to work on frontend for those pages
+  - Assignee: @likhith
+  - Due Date: 2023-10-18
 
 ## In Progress
 - [ ] Task 3
-  - Description: Develop feature XYZ
-  - Assignee: @developer1
-  - Due Date: 2023-11-05
-  - Labels: Feature
+  - Description: adding functions like editing,adding,deleting for all the controllers, parallely working on the frontend
+  - Assignee: @likhith1101
+  - Due Date: 2023-10-18
+
 
 ## Done
 - [x] Task 4
-  - Description: Review code changes
-  - Assignee: @reviewer
+  - Description: Created the entities for the Product,Feature,Parameter
+  - Assignee: @likhith1101
   - Due Date: 2023-10-15
-  - Labels: Review
 - [x] Task 5
-  - Description: Test new functionality
-  - Assignee: @tester
-  - Due Date: 2023-10-18
-  - Labels: Testing
+  - Description: added services,controllers for those entities and stored it in the database
+  - Assignee: @likhith1101
+  - Due Date: 2023-10-15
