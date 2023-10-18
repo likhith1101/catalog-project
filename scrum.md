@@ -8,4 +8,4 @@
 | Done          | Task 4 |  As a telecom user, Added functions for editing, adding, and deleting records for all controllers. Sequentially worked on the frontend for those methods. | 2023-10-16  |
 | Done          | Task 5 | As a telecom user, tested the entities, controllers and services of product, feature and parameter. | 2023-10-18 |
 | Inprogress    | Task 6 | As a telecom user, working on building the summary page in hierarchical form to visualize products, features, and parameters for better organization. Need to test the summary page to ensure its functionality and performance.  | 2023-10-18  |
-| To Do         | Task 7 | As a telecom user, need to work on the frontend design and functionality for the summary page.  | 2023-10-18  |
+| To Do         | Task 7 | As a telecom user, need to work on the frontend design and functionality for the summary page.  | 2023-10-19  |
