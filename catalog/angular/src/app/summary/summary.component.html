@@ -1,0 +1,43 @@
+<div class="tree">
+    <h2>Products</h2>
+    <ul>
+        <li *ngFor="let product of products">
+            {{ product.name }}
+            <ul>
+                <li>ID: {{ product.id }}</li>
+                <li>Name: {{ product.name }}</li>
+                <li>Internal Name: {{ product.internalName }}</li>
+                <li>Details: {{ product.details }}</li>
+                <li>Max Products Per Location: {{ product.maxProductsPerLocation }}</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="tree">
+    <h2>Features</h2>
+    <ul>
+        <li *ngFor="let feature of features">
+            {{ feature.name }}
+            <ul>
+                <li>Internal Name: {{ feature.internalName }}</li>
+                <li>Details: {{ feature.details }}</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="tree">
+    <h2>Parameters</h2>
+    <ul>
+        <li *ngFor="let parameter of parameters">
+            {{ parameter.name }}
+            <ul>
+                <li>Internal Name: {{ parameter.internalName }}</li>
+                <li>Details: {{ parameter.details }}</li>
+                <li>parameterType: {{ parameter.parameterType }}</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+

@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/trail5 # Update the PostgreSQL connection URL
+    username: jam
+    password: jam
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect  # Use the PostgreSQL dialect
+    hibernate:
+      ddl-auto: update  # or any other value you prefer (e.g., "validate" or "none")
+    show-sql: false
+
+jwt:
+  private.key: classpath:app.key
+  public.key: classpath:app.pub

@@ -1,0 +1,48 @@
+.tree {
+    margin-left: 20px;
+}
+
+.tree h2 {
+    margin: 0;
+}
+
+.tree ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.tree li {
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.tree li .toggle {
+    position: absolute;
+    left: -15px;
+    cursor: pointer;
+}
+
+.tree ul ul li {
+    list-style-type: none;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.tree ul ul li .toggle {
+    position: absolute;
+    left: -15px;
+    cursor: pointer;
+}
+
+.tree li .toggle::before {
+    content: '\25B6'; /* Right-pointing triangle (▶) */
+}
+
+.tree li.collapsed .toggle::before {
+    content: '\25B8'; /* Down-pointing triangle (▸) */
+}
+
+.tree ul ul li .toggle::before {
+    content: '\25A0'; /* Square (▪) */
+}

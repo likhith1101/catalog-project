@@ -1,0 +1,106 @@
+<h3>Products</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>details</th>
+      <th>internal_name</th>
+      <th>max_products_per_location</th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of data">
+      <td>{{ product.id }}</td>
+      <td>{{ product.details }}</td>
+      <td>{{ product.internalName }}</td>
+      <td>{{ product.maxProductsPerLocation }}</td>
+      <td>{{ product.name }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<button (click)="toggleAddForm()">Add</button>
+<div *ngIf="showAddForm">
+  <form [formGroup]="productForm">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" formControlName="name">
+    </div>
+    <div>
+      <label for="internalName">internalName:</label>
+      <input type="text" id="internalName" formControlName="internalName">
+    </div>
+    <div>
+      <label for="details">details:</label>
+      <textarea id="details" formControlName="details"></textarea>
+    </div>
+    <div>
+      <label for="maxProductsPerLocation">maxProductsPerLocation:</label>
+      <input type="number" id="maxProductsPerLocation" formControlName="maxProductsPerLocation">
+    </div>
+    <div>
+      <button (click)="addProduct()">Add Product</button>
+    </div>
+  </form>
+</div>
+
+
+<button (click)="toggleAddFeatureForm()">Add Feature</button>
+<div *ngIf="showAddFeatureForm">
+<form [formGroup]="featureForm">
+  <label for="name">Name:</label>
+  <input type="text" id="name" formControlName="name">
+
+  <label for="internalName">InternalName:</label>
+  <input type="text" id="internalName" formControlName="internalName">
+
+  <label for="details">Details:</label>
+  <input type="text" id="details" formControlName="details">
+</form>
+
+<!-- Dropdown for selecting a product by its ID -->
+<div>
+  <label for="productId">Select Product by ID:</label>
+  <select id="productId" [(ngModel)]="selectedProductId">
+    <option *ngFor="let product of data" [value]="product.id">{{ product.id }}</option>
+  </select>
+</div>
+
+<!-- Button to edit the selected product -->
+<button (click)="addFeatureToProduct()">Add Feature</button>
+</div>
+
+
+
+
+<!-- Edit Product Form -->
+<button (click)="toggleEditForm()">Edit</button>
+<div *ngIf="showEditForm">
+<form [formGroup]="productForm">
+  <label for="name">Name:</label>
+  <input type="text" id="name" formControlName="name">
+
+  <label for="internalName">InternalName:</label>
+  <input type="text" id="internalName" formControlName="internalName">
+
+  <label for="details">Details:</label>
+  <input type="text" id="details" formControlName="details">
+
+  <label for="maxProductsPerLocation">maxProductsPerLocation:</label>
+  <input type="number" id="maxProductsPerLocation" formControlName="maxProductsPerLocation">
+</form>
+
+<!-- Dropdown for selecting a product by its ID -->
+<div>
+  <label for="productId">Select Product by ID:</label>
+  <select id="productId" [(ngModel)]="selectedProductId">
+    <option *ngFor="let product of data" [value]="product.id">{{ product.id }}</option>
+  </select>
+</div>
+
+<!-- Button to edit the selected product -->
+<button (click)="editProduct()">Edit Product</button>
+</div>
+

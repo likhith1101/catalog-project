@@ -1,0 +1,24 @@
+<header class="wrapper">
+  <div class="navbar">
+    <h3>Cycles</h3>
+    <nav>
+      <ul class="nav-items">
+        <li><a routerLink="/cycles" class="nav-link" routerLinkActive="active">Cycles</a></li>
+        <li *ngIf="!this.authService.isUserAdmin()">
+          <a routerLink="/cart" class="nav-link" appAuthClick routerLinkActive="active">Cart</a>
+        </li>
+        <li *ngIf="this.authService.isUserAdmin()">
+          <a routerLink="/orders" class="nav-link" appAuthClick routerLinkActive="active">Orders</a>
+        </li>
+        <li *ngIf="!authService.isLoggedIn || authService.isExpired() else logoutLink">
+          <a routerLink="/login" class="nav-link" routerLinkActive="active">Login</a>
+        </li>
+      </ul>
+    </nav>
+    <ng-template #logoutLink>
+        <li>
+            <a class="nav-link" (click)="authService.logout()" routerLinkActive="active">Logout</a>
+        </li>
+    </ng-template>
+  </div>
+</header>

@@ -1,0 +1,120 @@
+/* feature.component.css */
+
+/* Apply styles to the container element */
+/* feature.component.css */
+
+/* Style the primary button */
+.primary-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.primary-button:hover {
+  background-color: #0056b3;
+}
+
+/* Style the secondary button */
+.secondary-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.secondary-button:hover {
+  background-color: #1e7e34;
+}
+
+/* Style the edit button */
+.edit-button {
+  background-color: #ffc107;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.edit-button:hover {
+  background-color: #d39e00;
+}
+
+/* Apply the button classes to your HTML buttons */
+
+.feature-container {
+  margin: 20px;
+}
+
+/* Style the header */
+h3 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Style the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f0f0f0;
+}
+
+/* Style the buttons */
+button {
+  margin: 10px;
+  background-color: #c8ff00;
+  color: #0f0f0f;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #2db300;
+}
+
+/* Style form elements */
+form {
+  margin: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Style the dropdown */
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Apply additional styling as needed */

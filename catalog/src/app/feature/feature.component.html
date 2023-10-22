@@ -1,0 +1,38 @@
+<h3>Features</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>FeatureID</th>
+      <th>Name</th>
+      <th>InternalName</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let feature of data">
+      <td>{{ feature.featureId }}</td>
+      <td>{{ feature.name }}</td>
+      <td>{{ feature.internalName }}</td>
+      <td>{{ feature.details }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<form [formGroup]="featureForm">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" formControlName="name">
+  </div>
+  <div>
+    <label for="internalName">internalName:</label>
+    <input type="text" id="internalName" formControlName="internalName">
+  </div>
+  <div>
+    <label for="details">details:</label>
+    <textarea id="details" formControlName="details"></textarea>
+  </div>
+  <div>
+    <button (click)="addFeature()">Add Feature</button>
+  </div>
+</form>
