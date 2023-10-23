@@ -1,4 +1,5 @@
 ## Scrum Board
+## Catalog
 | Status        | Task   | User Story                                             | Due Date   | Duration |
 |---------------|------- |------------------------------------------------------| ----------  | ----------|
 | Done          | Task 1 |  As a software architect, Created the necessary entities for Product, Feature, and Parameter to support the summary page. | 2023-10-16 | 1 day |
