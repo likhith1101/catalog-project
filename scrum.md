@@ -1,5 +1,9 @@
-## Scrum Board with Animated Styles (tableflip)
+---
+title: Scrum Board
+css: custom.css
+---
 
+## Scrum Board
 | Status        | Task   | User Story                                             | Due Date   | Duration |
 |:--------------:|------- |------------------------------------------------------|:----------:|:----------:|
 | Done          | Task 1 |  As a software architect, Created the necessary entities for Product, Feature, and Parameter to support the summary page. | 2023-10-16 | 1 day |
@@ -10,4 +14,4 @@
 | In Progress   | Task 6 | As a telecom user, working on building the summary page in hierarchical form in a tree structure to show the relation between the products, features, and parameters | 2023-10-19  | In Progress |
 | To Do         | Task 7 | Should work on CI Integration tests and swagger api documentation | Next Week | - |
 
-(╯°□°）╯︵ ┻━┻
+
