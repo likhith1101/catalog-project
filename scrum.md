@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="styles.css">
 ## Scrum Board
 ## Catalog
 | Status        | Task   | User Story                                             | Due Date   | Duration |
