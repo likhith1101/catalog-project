@@ -7,4 +7,4 @@
 | Done          | Task 4 |  As a telecom user, Added functions for editing, adding, and deleting records for all controllers. Sequentially worked on the frontend for those methods. | 2023-10-18  | 2 days |
 | Done          | Task 5 | As a telecom user, have done the unit testing and created three pages for product, features, parameters as per the given requirements with its functionalities and created a summary page. | 2023-10-19  | 2 days |
 | In Progress   | Task 6 | As a telecom user, working on designing the summary page in hierarichal form and need to do testing for the summary | 2023-10-23  | In Progress |
-| To Do         | Task 7 | Should work on CI Integration tests and swagger api documentation | 2023-10-24 | - |
+| To Do         | Task 7 | Should work on functional testing and swagger api documentation | 2023-10-24 | - |
