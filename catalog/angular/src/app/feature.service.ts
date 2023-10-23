@@ -42,6 +42,11 @@ export class FeatureService {
 		const url = `${this.baseUrl}/${productId}/features`; // Adjust the URL according to your API
 		return this.http.get<Feature[]>(url);
 	  }
+
+	  getParametersByFeatureId(featureId: number): Observable<Parameter[]> {
+		const url = `${this.baseUrl}/${featureId}/parameters`; // Adjust the URL according to your API
+		return this.http.get<Parameter[]>(url);
+	  }
 	
 	  
 }

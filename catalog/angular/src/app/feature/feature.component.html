@@ -103,6 +103,37 @@
 </div>
 
 
+<h3>Parameters</h3>
+
+Dropdown to select a feature by its ID
+<div>
+  <label for="featureIdSelect">Select Feature by ID:</label>
+  <select id="featureIdSelect" [(ngModel)]="selectedFeatureId">
+    <option *ngFor="let product of  data" [value]="product.featureId">{{ product.featureId }}</option>
+  </select>
+  <button (click)="loadParametersByFeatureId()">Load Parameters</button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>details</th>
+      <th>name</th>
+      <th>internal_name</th>
+      <th>parameterType</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let parameter of parameters">
+      <td>{{ parameter.name }}</td>
+      <td>{{ parameter.internalName }}</td>
+      <td>{{ parameter.details }}</td>
+      <td>{{ parameter.parameterType }}</td>
+    </tr>
+  </tbody>
+</table>
+
+
 
 
 

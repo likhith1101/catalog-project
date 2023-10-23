@@ -13,6 +13,8 @@ import { Parameter } from '../Parameter';
 })
 export class FeatureComponent {
   data: Feature[]=[];
+  parameters: Parameter[]=[];
+  features: Feature[]=[];
   featureForm: FormGroup;
   parameterForm: FormGroup;
   showAddForm: boolean = false;
@@ -20,6 +22,8 @@ export class FeatureComponent {
   showAddParameterForm: boolean = false;
   selectedFeatureId: number | undefined;
   parameterTypes: string[] = ['QUANTITY','PRICE','OTHER'];
+
+  selectedFeatureParameters: Parameter[] = [];
 
   constructor(public authService: AuthService, private featureService: FeatureService, private parameterService: ParameterService, private formBuilder: FormBuilder) {
     this.featureForm = this.formBuilder.group({
@@ -97,6 +101,17 @@ export class FeatureComponent {
     });
     this.parameterForm.reset();
     this.showAddParameterForm = false;
+  }
+}
+
+loadParametersByFeatureId() {
+  if (this.selectedFeatureId === undefined) {
+    alert('Please select a valid Feature ID.');
+  } else {
+    this.featureService.getParametersByFeatureId(this.selectedFeatureId).subscribe(res => {
+      this.parameters = res;
+      this.selectedFeatureParameters = res; // Update selectedProductFeatures
+    });
   }
 }
 

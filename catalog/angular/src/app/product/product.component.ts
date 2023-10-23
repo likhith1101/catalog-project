@@ -53,6 +53,10 @@ export class ProductComponent implements OnInit {
     this.productService.getData().subscribe(res => (this.data = res));
   }
 
+
+
+
+
   
 
    
@@ -64,18 +68,18 @@ export class ProductComponent implements OnInit {
 
  
 
-  loadFeaturesByProductId() {
-    console.log("I am called");
-    if (this.selectedProductId === undefined) {
-      alert('Please select a valid Feature ID.');
-    }
-    else{
-      console.log("i ama perfect human");
-    this.productService.getFeaturesByProductId(this.selectedProductId).subscribe(res => (this.features = res));
-    // this.featureForm.reset();
-    // this.showAddFeatureForm = false;
-  }
-  }
+  // loadFeaturesByProductId() {
+  //   console.log("I am called");
+  //   if (this.selectedProductId === undefined) {
+  //     alert('Please select a valid Feature ID.');
+  //   }
+  //   else{
+  //     console.log("i ama perfect human");
+  //   this.productService.getFeaturesByProductId(this.selectedProductId).subscribe(res => (this.features = res));
+  //   // this.featureForm.reset();
+  //   // this.showAddFeatureForm = false;
+  // }
+  // }
   
 
   
@@ -121,6 +125,19 @@ export class ProductComponent implements OnInit {
       this.showEditForm = false;
     }
   }
+
+  loadFeaturesByProductId() {
+    if (this.selectedProductId === undefined) {
+      alert('Please select a valid Product ID.');
+    } else {
+      this.productService.getFeaturesByProductId(this.selectedProductId).subscribe(res => {
+        this.features = res;
+        this.selectedProductFeatures = res; // Update selectedProductFeatures
+      });
+    }
+  }
+
+
 
 
 

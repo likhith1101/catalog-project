@@ -16,6 +16,7 @@ export class ProductService {
 	getData(): Observable<any[]> {
 		return this.http.get<any[]>(`${this.baseUrl}/list`);
 	}
+	
 
 // 	addProduct(id:number,details:string,name:string,internalName:string,maxProductsPerLocation:number,): Observable<String> {
 //     return this.http.post<String>(`${this.baseUrl}/add`, {}, {params: {
