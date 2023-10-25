@@ -3,5 +3,6 @@ export interface Parameter {
     name: String,
     internalName: String,
     details: String,
-    parameterType: String
+    parameterType: String,
+    values: String
 }

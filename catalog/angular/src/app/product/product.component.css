@@ -1,77 +1,89 @@
-/* product.component.css */
+/* Add some spacing between buttons inside .product-card */
+.product-card .product-actions button {
+  margin-right: 10px; /* Add right margin to create space between buttons */
+}
 
-/* Container style */
 .product-container {
-  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-/* Heading style */
-h3 {
-  text-align: center;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-/* Table style */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th, td {
+.product-card {
   border: 1px solid #ccc;
-  padding: 8px;
-  text-align: left;
-}
-
-th {
-  background-color: #f0f0f0;
-}
-
-/* Button style */
-button {
+  border-radius: 8px; /* Rounded corners for the card */
+  padding: 10px;
   margin: 10px;
-  background-color: #e1ff00;
-  color: #0c0c0c;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 4px;
+  width: calc(33.33% - 20px); /* Adjust based on your layout */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s; /* Add a smooth hover effect */
+}
+
+.product-card:hover {
+  transform: scale(1.02); /* Enlarge the card on hover */
+}
+
+.product-info {
+  padding: 10px;
+}
+
+.product-actions {
+  text-align: center;
+  padding: 10px;
+}
+
+button {
+  background-color: #007BFF; /* Blue background color */
+  color: #fff; /* White text color */
+  padding: 10px 20px; /* Padding around the text */
+  border: none; /* Remove border */
+  cursor: pointer; /* Add pointer cursor on hover */
 }
 
 button:hover {
-  background-color: #51b300;
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
-/* Form style */
+/* Style for forms */
 form {
-  margin: 10px;
+  margin: 20px; /* Add margin around the form */
 }
 
 label {
-  display: block;
-  margin-bottom: 5px;
+  font-weight: bold; /* Make labels bold */
+  margin-right: 10px; /* Add spacing between labels and input fields */
 }
 
 input[type="text"],
-textarea,
-input[type="number"] {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+input[type="number"],
+textarea {
+  width: 100%; /* Make input fields and textarea full width */
+  padding: 5px; /* Add padding to input fields */
+  margin-bottom: 10px; /* Add spacing between input fields */
 }
 
-/* Dropdown style */
 select {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  width: 100%; /* Make select elements full width */
+  padding: 5px; /* Add padding to select elements */
+  margin-bottom: 10px; /* Add spacing between select elements */
 }
 
+/* Style for modal */
+.modal {
+  display: none; /* Hide the modal by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
 
-
-/* Apply additional styling as needed */
+.modal-content {
+  background-color: #fff;
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative;
+  top: 30%;
+}

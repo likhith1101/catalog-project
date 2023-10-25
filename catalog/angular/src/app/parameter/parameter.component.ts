@@ -31,7 +31,8 @@ export class ParameterComponent {
       name: ['', Validators.required],
       internalName: ['', Validators.required],
       details: ['', Validators.required],
-      parameterType: ['', Validators.required]
+      parameterType: ['', Validators.required],
+      values: ['', Validators.required] 
    })
    }
 
@@ -54,12 +55,12 @@ export class ParameterComponent {
 
   editParameter() {
     if (this.selectedParameterId === undefined) {
-      alert('Please select a valid Parameter ID.');
+      console.log('Please select a valid Parameter ID.');
     } else {
       const updatedParameter: Parameter = this.parameterForm.value as Parameter;
       this.parameterService.editParameter(this.selectedParameterId, updatedParameter).subscribe(() => {
         this.loadData(); // Refresh the product list after editing
-        alert('Parameter updated successfully');
+        console.log('Parameter updated successfully');
       });
       this.parameterForm.reset();
       this.showEditForm = false;

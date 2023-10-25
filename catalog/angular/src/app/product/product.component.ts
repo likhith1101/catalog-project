@@ -61,26 +61,6 @@ export class ProductComponent implements OnInit {
 
    
 
-  // private loadFeatures() {
-  //   this.productService.getFeaturesByProductId(this.selectedProductId).subscribe(res => (this.features = res));
-  // }
-
-
- 
-
-  // loadFeaturesByProductId() {
-  //   console.log("I am called");
-  //   if (this.selectedProductId === undefined) {
-  //     alert('Please select a valid Feature ID.');
-  //   }
-  //   else{
-  //     console.log("i ama perfect human");
-  //   this.productService.getFeaturesByProductId(this.selectedProductId).subscribe(res => (this.features = res));
-  //   // this.featureForm.reset();
-  //   // this.showAddFeatureForm = false;
-  // }
-  // }
-  
 
   
   
@@ -106,29 +86,29 @@ export class ProductComponent implements OnInit {
     const newProduct: Product = this.productForm.value as Product;
     this.productService.addProduct(newProduct).subscribe(() => {
       this.loadData(); // Refresh the product list after adding
-      alert('Product added');
+      console.log('Product added');
     });
     this.productForm.reset();
     this.showAddForm = false;
   }
 
-  editProduct() {
+  editProduct(selectedProductId: number | undefined) {
     if (this.selectedProductId === undefined) {
-      alert('Please select a valid Product ID.');
+      console.log('Please select a valid Product ID.');
     } else {
       const updatedProduct: Product = this.productForm.value as Product;
       this.productService.editProduct(this.selectedProductId, updatedProduct).subscribe(() => {
         this.loadData(); // Refresh the product list after editing
-        alert('Product updated successfully');
+        console.log('Product updated successfully');
       });
       this.productForm.reset();
       this.showEditForm = false;
     }
   }
 
-  loadFeaturesByProductId() {
+  loadFeaturesByProductId(selectedProductId: number | undefined) {
     if (this.selectedProductId === undefined) {
-      alert('Please select a valid Product ID.');
+      console.log('Please select a valid Product ID.');
     } else {
       this.productService.getFeaturesByProductId(this.selectedProductId).subscribe(res => {
         this.features = res;
@@ -141,9 +121,9 @@ export class ProductComponent implements OnInit {
 
 
 
-  addFeatureToProduct() {
+  addFeatureToProduct(selectedProductId: number | undefined) {
     if (this.selectedProductId === undefined) {
-      alert('Please select a valid Feature ID.');
+      console.log('Please select a valid Feature ID.');
     }
     else{
     const newFeature: Feature = this.featureForm.value as Feature;
@@ -151,7 +131,7 @@ export class ProductComponent implements OnInit {
     this.productService.addFeatureToProduct(this.selectedProductId,newFeature).subscribe(() => {
       this.loadData(); // Refresh the product list after adding
       
-      alert('Feature added');
+      console.log('Feature added');
     });
     this.featureForm.reset();
     this.showAddFeatureForm = false;

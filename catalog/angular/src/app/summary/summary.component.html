@@ -1,134 +1,47 @@
-<h1>Summary Page</h1>
+<h1 class="display-4">Summary Page</h1>
 
 <!-- Products Section -->
-<section>
-  <h2>Products</h2>
-  <table>
-    <thead>
-
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of products">
-        <td>{{ product.id }}</td>
-        <td>{{ product.name }}</td>
-        <td>{{ product.internalName }}</td>
-        <td>{{ product.details }}</td>
-        <td>{{ product.maxProductsPerLocation }}</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-</section>
-
-<!-- Features Section -->
-<section>
-  <h2>Features</h2>
-  <!-- Dropdown to select a product by its ID -->
-  <div>
-    <label for="productIdSelect">Select Product by ID:</label>
-    <select id="productIdSelect" [(ngModel)]="selectedProductId">
-      <option *ngFor="let product of products" [value]="product.id">{{ product.id }}</option>
-    </select>
-    <button (click)="loadFeaturesByProductId()">Load Features</button>
-  </div>
-
-  <table>
-    <thead>
-      <tr>
-        <th>FeatureID</th>
-        <th>Details</th>
-        <th>Internal Name</th>
-        <th>Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let feature of features">
-        <td>{{ feature.featureId }}</td>
-        <td>{{ feature.details }}</td>
-        <td>{{ feature.internalName }}</td>
-        <td>{{ feature.name }}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- Add Feature Button and Form -->
-  <button (click)="toggleAddFeatureForm()">Add Features to Product</button>
-  <div *ngIf="showAddFeatureForm">
-    <form [formGroup]="featureForm">
-      <!-- Feature Form Fields -->
-      <label for="name">Name:</label>
-      <input type="text" id="name" formControlName="name">
-      <label for="internalName">Internal Name:</label>
-      <input type="text" id="internalName" formControlName="internalName">
-      <label for="details">Details:</label>
-      <input type="text" id="details" formControlName="details">
-    </form>
-    <!-- Dropdown for selecting a product by its ID -->
-    <div>
-      <label for="productId">Select Product by ID:</label>
-      <select id="productId" [(ngModel)]="selectedProductId">
-        <option *ngFor="let product of products" [value]="product.id">{{ product.id }}</option>
-      </select>
-      <button (click)="addFeatureToProduct()">Add Feature</button>
-    </div>
-  </div>
-</section>
-
-<!-- Parameters Section -->
-<section>
-  <h2>Parameters</h2>
-  <!-- Dropdown to select a feature by its ID -->
-  <div>
-    <label for="featureIdSelect">Select Feature by ID:</label>
-    <select id="featureIdSelect" [(ngModel)]="selectedFeatureId">
-      <option *ngFor="let feature of features" [value]="feature.featureId">{{ feature.featureId }}</option>
-    </select>
-    <button (click)="loadParametersByFeatureId()">Load Parameters</button>
-  </div>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Internal Name</th>
-        <th>Details</th>
-        <th>Parameter Type</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let parameter of parameters">
-        <td>{{ parameter.name }}</td>
-        <td>{{ parameter.internalName }}</td>
-        <td>{{ parameter.details }}</td>
-        <td>{{ parameter.parameterType }}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- Add Parameter Button and Form -->
-  <button (click)="toggleAddParameterForm()">Add Parameters to Feature</button>
-  <div *ngIf="showAddParameterForm">
-    <form [formGroup]="parameterForm">
-      <!-- Parameter Form Fields -->
-      <label for="name">Name:</label>
-      <input type="text" id="name" formControlName="name">
-      <label for="internalName">Internal Name:</label>
-      <input type="text" id="internalName" formControlName="internalName">
-      <label for="details">Details:</label>
-      <textarea id="details" formControlName="details"></textarea>
-      <label for="parameterType">Parameter Type:</label>
-      <select id="parameterType" formControlName="parameterType">
-        <option *ngFor="let type of parameterTypes" [value]="type">{{ type }}</option>
-      </select>
-    </form>
-    <!-- Dropdown for selecting a feature by its ID -->
-    <div>
-      <label for="feature">Select Feature by ID:</label>
-      <select id="feature" [(ngModel)]="selectedFeatureId">
-        <option *ngFor="let feature of features" [value]="feature.featureId">{{ feature.featureId }}</option>
-      </select>
-      <button (click)="addParameterToFeature()">Add Parameter</button>
+<section class="product-section">
+  <h2>Products:</h2>
+  <div class="product-container row">
+    <div *ngFor="let product of products" class="product-card col-md-4">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title"><strong>Product ID:</strong> {{ product.id }}</h5>
+          <p class="card-text"><strong>Name:</strong> {{ product.name }}</p>
+          <p class="card-text"><strong>Internal Name:</strong> {{ product.internalName }}</p>
+          <p class="card-text"><strong>Details:</strong> {{ product.details }}</p>
+          <p class="card-text"><strong>Max Products Per Location:</strong> {{ product.maxProductsPerLocation }}</p>
+        <section class="feature-section">
+          <h3>Features:</h3>
+          <div class="feature-container">
+            <div *ngFor="let feature of product.features" class="feature-card">
+              <div class="feature-info">
+                <p><strong>Feature ID:</strong> {{ feature.featureId }}</p>
+                <p><strong>Name:</strong> {{ feature.name }}</p>
+                <p><strong>Internal Name:</strong> {{ feature.internalName }}</p>
+                <p><strong>Details:</strong> {{ feature.details }}</p>
+              <section class="parameter-section">
+                <h4>Parameters:</h4>
+                <div class="parameter-container">
+                  <div *ngFor="let parameter of feature.parameters" class="parameter-card">
+                    <div class="parameter-info">
+                      <p><strong>Parameter ID:</strong> {{ parameter.parameterId }}</p>
+                      <p><strong>Name:</strong> {{ parameter.name }}</p>
+                      <p><strong>Internal Name:</strong> {{ parameter.internalName }}</p>
+                      <p><strong>Details:</strong> {{ parameter.details }}</p>
+                      <p><strong>Parameter Type:</strong> {{ parameter.parameterType }}</p>
+                      <p><strong>Values:</strong> {{ parameter.values }}</p>
+                    </div>
+                  </div>
+                </div>
+                </section>
+              </div>
+            </div>
+          </div>
+          </section>
+        </div>
+      </div>
     </div>
   </div>
 </section>

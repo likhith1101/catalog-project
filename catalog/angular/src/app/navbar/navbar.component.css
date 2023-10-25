@@ -1,40 +1,43 @@
+/* navbar.component.css */
+
 .wrapper {
-    height: 60px;
-    background-color: white;
-    border-bottom: 1px solid #e7e7e7;
-    display: flex;
-    align-items: center;
+    background-color: #08d4f8;
+    color: #0e0e0e;
+    padding: 10px 0;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    max-width: 90%;
-    margin: auto;
-    background-color: #39e617; /* Dark background color for the navbar */
-    color: white; /* Text color for the navbar items */
-    padding: 10px 0; /* Add some padding for better spacing */
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h3 {
+    margin: 0;
 }
 
 .nav-items {
+    list-style: none;
+    padding: 0;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
+}
+
+.nav-items li {
+    margin-right: 20px;
 }
 
 .nav-link {
+    color: #0f0e0e;
     text-decoration: none;
-    color: #007bff; /* Blue color for links */
-    font-weight: 700;
-    font-size: 16px;
-    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #ff5733;
 }
 
 .active {
-    background-color: #007bff; /* Blue background color for active link */
-    color: white; /* White text color for active link */
-    border-radius: 4px; /* Rounded corners for active link */
-    padding: 5px 10px; /* Add padding to make it more prominent */
+    font-weight: bold;
 }

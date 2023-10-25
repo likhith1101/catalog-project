@@ -14,7 +14,7 @@ import { Parameter } from '../Parameter';
 export class FeatureComponent {
   data: Feature[]=[];
   parameters: Parameter[]=[];
-  features: Feature[]=[];
+
   featureForm: FormGroup;
   parameterForm: FormGroup;
   showAddForm: boolean = false;
@@ -35,7 +35,8 @@ export class FeatureComponent {
     name: ['', Validators.required],
     internalName: ['', Validators.required],
     details: ['', Validators.required],
-    parameterType: ['', Validators.required]
+    parameterType: ['', Validators.required],
+    values: ['', Validators.required]
  })
   }
 
@@ -73,12 +74,12 @@ export class FeatureComponent {
 
   editFeature() {
     if (this.selectedFeatureId === undefined) {
-      alert('Please select a valid Feature ID.');
+      console.log('select valid feature id');
     } else {
       const updatedFeature: Feature = this.featureForm.value as Feature;
       this.featureService.editFeature(this.selectedFeatureId, updatedFeature).subscribe(() => {
         this.loadData(); // Refresh the product list after editing
-        alert('Feature updated successfully');
+        console.log('Feature updated successfully');
       });
       this.featureForm.reset();
       this.showEditForm = false;
@@ -91,13 +92,13 @@ export class FeatureComponent {
 
   addParameterToFeature() {
     if (this.selectedFeatureId === undefined) {
-      alert('Please select a valid Parameter ID.');
+      console.log('Please select a valid Parameter ID.');
     }
     else{
     const newParameter: Parameter = this.parameterForm.value as Parameter;
     this.featureService.addParameterToFeature(this.selectedFeatureId,newParameter).subscribe(() => {
       this.loadData(); // Refresh the product list after adding
-      alert('Parameter added');
+      console.log('Parameter added');
     });
     this.parameterForm.reset();
     this.showAddParameterForm = false;
@@ -106,7 +107,7 @@ export class FeatureComponent {
 
 loadParametersByFeatureId() {
   if (this.selectedFeatureId === undefined) {
-    alert('Please select a valid Feature ID.');
+    console.log('Please select a valid Feature ID.');
   } else {
     this.featureService.getParametersByFeatureId(this.selectedFeatureId).subscribe(res => {
       this.parameters = res;

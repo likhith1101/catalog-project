@@ -24,6 +24,8 @@ public class Parameter {
     private String internalName;
     private String details;
     private ParameterType parameterType;// Enum for "quantity," "price," "other"
+    private String values;
+   
 
     // @ManyToOne
     // @JoinColumn(name = "feat_id")

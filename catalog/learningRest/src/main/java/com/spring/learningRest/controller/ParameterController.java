@@ -125,6 +125,7 @@ public class ParameterController {
             errorParameter.setInternalName("Error");
             errorParameter.setDetails("Error");
             
+            
            // errorFeature.setDescription("Error while adding the feature: " + ex.getMessage());
             return ResponseEntity.ok(errorParameter);
         }

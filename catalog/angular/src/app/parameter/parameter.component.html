@@ -1,86 +1,39 @@
 <h3>Parameters</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th> parameterID</th>
-      <th>name</th>
-      <th>internal_name</th>
-      <th>details</th>
-      <th>parameterType</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let parameter of data">
-      <td>{{ parameter.parameterId }}</td>
-      <td>{{ parameter.name }}</td>
-      <td>{{ parameter.internalName }}</td>
-      <td>{{ parameter.details }}</td>
-      <td>{{ parameter.parameterType }}</td>
-    </tr>
-  </tbody>
-</table>
-
-<button (click)="toggleAddForm()">Add Parameter</button>
-<div *ngIf="showAddForm">
-<form [formGroup]="parameterForm">
-  <div>
-    <label for="name">Name:</label>
-    <input type="text" id="name" formControlName="name">
+<div class="parameter-container">
+  <div *ngFor="let parameter of data" class="parameter-card">
+    <div class="parameter-info">
+      <p><strong>Parameter ID:</strong> {{ parameter.parameterId }}</p>
+      <p><strong>Name:</strong> {{ parameter.name }}</p>
+      <p><strong>Internal Name:</strong> {{ parameter.internalName }}</p>
+      <p><strong>Details:</strong> {{ parameter.details }}</p>
+      <p><strong>Parameter Type:</strong> {{ parameter.parameterType }}</p>
+      <p><strong>Values:</strong> {{ parameter.values }}</p>
+    </div>
+    <div class="parameter-actions">
+      <button (click)="toggleEditForm()">Edit</button>
+      <div *ngIf="showEditForm">
+        <form [formGroup]="parameterForm">
+          <label for="name">Name:</label>
+          <input type="text" id="name" formControlName="name">
+    
+          <label for="internalName">InternalName:</label>
+          <input type="text" id="internalName" formControlName="internalName">
+    
+          <label for="details">Details:</label>
+          <input type="text" id="details" formControlName="details">
+    
+          <label for="parameterType">Parameter Type:</label>
+          <select id="parameterType" formControlName="parameterType">
+            <option *ngFor="let type of parameterTypes" [value]="type">{{ type }}</option>
+          </select>
+    
+          <label for="values">Values:</label>
+          <input type="text" id="values" formControlName="values">
+        </form>
+        <div>
+          <button (click)="editParameter()">Save</button>
+        </div>
+      </div>
+    </div>
   </div>
-  <div>
-    <label for="internalName">internalName:</label>
-    <input type="text" id="internalName" formControlName="internalName">
-  </div>
-  <div>
-    <label for="details">details:</label>
-    <textarea id="details" formControlName="details"></textarea>
-  </div>
-  <div>
-    <label for="parameterType">Parameter Type:</label>
-    <select id="parameterType" formControlName="parameterType">
-      <option *ngFor="let type of parameterTypes" [value]="type">{{ type }}</option>
-    </select>
-  </div>
-  
-  <div>
-    <button (click)="addParameter()">Add Parameter</button>
-  </div>
-</form>
-</div>
-
-
-<!-- Edit Product Form -->
-<button (click)="toggleEditForm()">Edit</button>
-<div *ngIf="showEditForm">
-<form [formGroup]="parameterForm">
-  <label for="name">Name:</label>
-  <input type="text" id="name" formControlName="name">
-
-  <label for="internalName">InternalName:</label>
-  <input type="text" id="internalName" formControlName="internalName">
-
-  <label for="details">Details:</label>
-  <input type="text" id="details" formControlName="details">
-
-  <div>
-    <label for="parameterType">Parameter Type:</label>
-    <select id="parameterType" formControlName="parameterType">
-      <option *ngFor="let type of parameterTypes" [value]="type">{{ type }}</option>
-    </select>
-  </div>
-
- 
-</form>
-
-
-<div>
-  <label for="parameterId">Select Parameter by ID:</label>
-  <select id="parameterId" [(ngModel)]="selectedParameterId">
-    <option *ngFor="let parameter of data" [value]="parameter.parameterId">{{ parameter.parameterId }}</option>
-  </select>
-</div>
-
-<!-- Button to edit the selected product -->
-<button (click)="editParameter()">Edit</button>
 </div>

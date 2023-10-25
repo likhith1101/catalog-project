@@ -43,17 +43,8 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    // @GetMapping("/list")
-    // public List<Product> getAllProducts() {
-    //     // Implement logic to get all products
-    //     return (List<Product>) productRepository.findAll();
-    // }
+
     
-
-
-
-
-
     @GetMapping("/{productId}")
     public ResponseEntity<Product> getProductById(@PathVariable Long productId) {
         Product product = productRepository.findById(productId)
