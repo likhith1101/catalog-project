@@ -1,6 +1,23 @@
-
 ## Scrum Board
 ## Catalog
+
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+</style>
+
 | Status        | Task   | User Story                                             | Due Date   | Duration |
 |---------------|------- |------------------------------------------------------| ----------  | ----------|
 | Done          | Task 1 |  As a software architect, Created the necessary entities for Product, Feature, and Parameter to support the summary page. | 2023-10-16 | 1 day |
@@ -8,5 +25,6 @@
 | Done          | Task 3 |  As a telecom user, Can securely log in and access the system. Created a login page and provided Authorization. | 2023-10-17  | 1 day |
 | Done          | Task 4 |  As a telecom user, Added functions for editing, adding, and deleting records for all controllers. Sequentially worked on the frontend for those methods. | 2023-10-18  | 2 days |
 | Done          | Task 5 | As a telecom user, have done the unit testing and created three pages for product, features, parameters as per the given requirements with its functionalities and created a summary page. | 2023-10-19  | 2 days |
-| In Progress   | Task 6 | As a telecom user, working on designing the summary page in hierarichal form and need to do testing for the summary | 2023-10-23  | In Progress |
+| In Progress   | Task 6 | As a telecom user, working on designing the summary page in hierarchical form and need to do testing for the summary | 2023-10-23  | In Progress |
 | To Do         | Task 7 | Should work on functional testing and swagger api documentation | 2023-10-24 | - |
+</style>
