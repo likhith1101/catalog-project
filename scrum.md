@@ -10,6 +10,6 @@
 | Done          | Task 5 | As a telecom user, have done the unit testing and created three pages for product, features, parameters as per the given requirements with its functionalities. | 2023-10-21  | 3 days |
 | Done          | Task 6 | As a telecom user, Created summary page where the products,features and parameters are related in hierarichal way. | 2023-10-24  | 3 days |
 | Done   | Task 7 | As a telecom user, provided role for admin to add and edit the products,features and parameters. | 2023-10-25 | 1 day |
-| In progress | Task 8 |  As a telecom user, testing the backend for improving the coverage and also working on improving my UI | 2023-10-26  | - | 
+| In progress | Task 8 |  As a telecom user, testing the backend for improving the coverage and also working on improving my UI | 2023-10-26  | 1 day | 
 | To Do         | Task 9 | Should work on functional testing and swagger api documentation | 2023-10-27 | - |
 
