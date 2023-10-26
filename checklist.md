@@ -2,10 +2,10 @@
 
 ## 1. Requirement Specifications
 
-- [ ] Detailed Requirement Specification Document (RSD)
-- [ ] User Stories
-- [ ] Use Cases
-- [ ] User Requirements
+- [x] Detailed Requirement Specification Document (RSD)
+- [x] User Stories
+- [x] Use Cases
+- [x] User Requirements
 
 ## 2. Backend Code with Documentation
 
