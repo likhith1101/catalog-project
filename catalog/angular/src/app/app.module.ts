@@ -17,7 +17,8 @@ import { ProductComponent } from './product/product.component';
 import { FeatureComponent } from './feature/feature.component';
 import { ParameterComponent } from './parameter/parameter.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SummaryComponent } from './summary/summary.component'; 
+import { SummaryComponent } from './summary/summary.component';
+ 
 
 
 @NgModule({

@@ -38,6 +38,16 @@ public class Parameter {
     }
 
     
+    // Default constructor
+    public Parameter() {
+    }
+
+    // Constructor with id and name
+    public Parameter(Long parameterId, String name) {
+        this.parameterId = parameterId;
+        this.name = name;
+    }
+    
   
     
     // @ManyToOne

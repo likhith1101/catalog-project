@@ -66,15 +66,7 @@ import java.util.List;
 //         }
 //     }
 
-// @PutMapping("/{parameterId}")
-// public ResponseEntity<Parameter> editParameter(@PathVariable Long parameterId, @RequestBody Parameter updatedParameter) {
-//     Parameter parameter = parameterService.editParameter(parameterId, updatedParameter);
-//     if (parameter != null) {
-//         return ResponseEntity.ok(parameter);
-//     } else {
-//         return ResponseEntity.notFound().build();
-//     }
-// }
+
 
 
 //     @DeleteMapping("/{parameterId}")
@@ -100,6 +92,14 @@ public class ParameterController {
     private ParameterRepository parameterRepository;
     @Autowired
     private ParameterService parameterService;
+
+
+
+    @Autowired
+    public ParameterController(ParameterRepository parameterRepository, ParameterService parameterService) {
+        this.parameterRepository = parameterRepository;
+        this.parameterService = parameterService;
+    }
 
 
         @GetMapping("/list")
@@ -130,5 +130,17 @@ public class ParameterController {
             return ResponseEntity.ok(errorParameter);
         }
     }
+
+    @PutMapping("/{parameterId}")
+public ResponseEntity<Parameter> editParameter(@PathVariable Long parameterId, @RequestBody Parameter updatedParameter) {
+    Parameter parameter = parameterService.editParameter(parameterId, updatedParameter);
+    if (parameter != null) {
+        return ResponseEntity.ok(parameter);
+    } else {
+        return ResponseEntity.notFound().build();
+    }
+}
+
+
 
 }

@@ -36,6 +36,12 @@ public class ProductController {
     @Autowired
     private FeatureRepository featureRepository;
 
+    @Autowired
+    public ProductController(ProductRepository productRepository, ProductService productService, FeatureRepository featureRepository) {
+        this.productRepository = productRepository;
+        this.productService = productService;
+        this.featureRepository = featureRepository;
+    }
 
 
     @GetMapping("/list")

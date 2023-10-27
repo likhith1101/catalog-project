@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/trail5 # Update the PostgreSQL connection URL
-    username: jam
-    password: jam
+    url: jdbc:postgresql://localhost:5432/trail6 # Update the PostgreSQL connection URL
+    username: trails
+    password: trails
   jpa:
     properties:
       hibernate:

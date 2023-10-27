@@ -1,43 +1,41 @@
-/* navbar.component.css */
-
+/* styles.css */
 .wrapper {
-    background-color: #08d4f8;
-    color: #0e0e0e;
-    padding: 10px 0;
-}
-
-.navbar {
+    background-color: #333; /* Background color for the header */
+    color: #fff; /* Text color for the header */
+    padding: 10px; /* Adjust padding as needed */
+  }
+  
+  .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-h3 {
-    margin: 0;
-}
-
-.nav-items {
+  }
+  
+  .logo {
+    font-size: 24px; /* Adjust font size as needed */
+  }
+  
+  .nav-items {
     list-style: none;
     padding: 0;
     display: flex;
-}
-
-.nav-items li {
-    margin-right: 20px;
-}
-
-.nav-link {
-    color: #0f0e0e;
+  }
+  
+  .nav-items li {
+    margin-right: 20px; /* Adjust spacing between navigation items */
+  }
+  
+  .nav-link {
     text-decoration: none;
-    transition: color 0.3s;
-}
-
-.nav-link:hover {
-    color: #ff5733;
-}
-
-.active {
+    color: #fff; /* Text color for navigation links */
+  }
+  
+  .nav-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Define styles for the 'active' state of links as needed */
+  .active {
     font-weight: bold;
-}
+  }
+  

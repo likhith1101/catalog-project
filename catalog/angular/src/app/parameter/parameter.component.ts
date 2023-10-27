@@ -3,6 +3,10 @@ import { Parameter } from '../Parameter';
 import { AuthService } from '../auth.service';
 import { ParameterService } from '../parameter.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FeatureService } from '../feature.service';
+import { Feature } from '../Feature';
+import { ProductService } from '../product.service';
+import { Product } from '../Product';
 
 @Component({
   selector: 'app-parameter',
@@ -11,11 +15,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ParameterComponent {
   data: Parameter[]=[];
+  features: Feature[]=[];
+  products: Product[]=[];
   parameterForm: FormGroup;
+  featureForm: FormGroup;
+  productForm: FormGroup;
   parameterTypes: string[] = ['QUANTITY','PRICE','OTHER'];
   selectedParameterId: number | undefined;
+  selectedFeatureId: number | undefined;
   showAddForm: boolean = false;
   showEditForm: boolean = false;
+  selectedFeatureParameters: Parameter[] = [];
 
   toggleEditForm() {
     this.showEditForm = !this.showEditForm;
@@ -26,22 +36,43 @@ export class ParameterComponent {
   }
 
 
-  constructor(public authService: AuthService, private parameterService: ParameterService, private formBuilder: FormBuilder) {
+  constructor(public authService: AuthService, private productService:ProductService, private parameterService: ParameterService, private featureService: FeatureService, private formBuilder: FormBuilder) {
     this.parameterForm = this.formBuilder.group({
       name: ['', Validators.required],
       internalName: ['', Validators.required],
       details: ['', Validators.required],
       parameterType: ['', Validators.required],
-      values: ['', Validators.required] 
+      values: ['', Validators.required]
+   })
+   this.featureForm = this.formBuilder.group({
+    name: ['', Validators.required],
+    internalName: ['', Validators.required],
+    details: ['', Validators.required]
+   })
+   this.productForm = this.formBuilder.group({
+    name: ['', Validators.required],
+    internalName: ['', Validators.required],
+    details: ['', Validators.required],
+    maxProductsPerLocation: ['', Validators.required]
    })
    }
 
   ngOnInit() {
-    this.loadData();
+    this.loadProducts();
+    this.loadFeatures();
   }
 
   private loadData() {
     this.parameterService.getData().subscribe(res => this.data = res);
+  }
+
+  private loadProducts() {
+    this.productService.getData().subscribe(res => this.products = res);
+  }
+
+  
+  private loadFeatures() {
+    this.featureService.getData().subscribe(res => this.features = res);
   }
 
   addParameter() {
@@ -55,15 +86,26 @@ export class ParameterComponent {
 
   editParameter() {
     if (this.selectedParameterId === undefined) {
-      console.log('Please select a valid Parameter ID.');
+      alert('Please select a valid Parameter ID.');
     } else {
       const updatedParameter: Parameter = this.parameterForm.value as Parameter;
       this.parameterService.editParameter(this.selectedParameterId, updatedParameter).subscribe(() => {
         this.loadData(); // Refresh the product list after editing
-        console.log('Parameter updated successfully');
+        alert('Parameter updated successfully');
       });
       this.parameterForm.reset();
       this.showEditForm = false;
+    }
+  }
+
+  loadParametersByFeatureId() {
+    if (this.selectedFeatureId === undefined) {
+      alert('Please select a valid Feature ID.');
+    } else {
+      this.featureService.getParametersByFeatureId(this.selectedFeatureId).subscribe(res => {
+        this.data = res;
+        this.selectedFeatureParameters = res; // Update selectedProductFeatures
+      });
     }
   }
 }

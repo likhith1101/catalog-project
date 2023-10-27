@@ -5,6 +5,8 @@ import { FeatureService } from '../feature.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ParameterService } from '../parameter.service';
 import { Parameter } from '../Parameter';
+import { Product } from '../Product';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-feature',
@@ -13,19 +15,23 @@ import { Parameter } from '../Parameter';
 })
 export class FeatureComponent {
   data: Feature[]=[];
+  products: Product[]=[];
   parameters: Parameter[]=[];
-
+  features: Feature[]=[];
   featureForm: FormGroup;
   parameterForm: FormGroup;
   showAddForm: boolean = false;
   showEditForm: boolean = false;
   showAddParameterForm: boolean = false;
   selectedFeatureId: number | undefined;
+  selectedProductId: number | undefined;
   parameterTypes: string[] = ['QUANTITY','PRICE','OTHER'];
 
   selectedFeatureParameters: Parameter[] = [];
 
-  constructor(public authService: AuthService, private featureService: FeatureService, private parameterService: ParameterService, private formBuilder: FormBuilder) {
+  selectedProductFeatures: Feature[] = [];
+
+  constructor(public authService: AuthService, private productService:ProductService, private featureService: FeatureService, private parameterService: ParameterService, private formBuilder: FormBuilder) {
     this.featureForm = this.formBuilder.group({
       name: ['', Validators.required],
       internalName: ['', Validators.required],
@@ -36,12 +42,12 @@ export class FeatureComponent {
     internalName: ['', Validators.required],
     details: ['', Validators.required],
     parameterType: ['', Validators.required],
-    values: ['', Validators.required]
+    values:['', Validators.required]
  })
   }
 
   ngOnInit() {
-    this.loadData();
+    this.loadProducts();
   }
 
   
@@ -63,6 +69,10 @@ export class FeatureComponent {
     this.featureService.getData().subscribe(res => this.data = res);
   }
 
+  private loadProducts() {
+    this.productService.getData().subscribe(res => this.products = res);
+  }
+
   addFeature() {
     const newFeature: Feature = this.featureForm.value as Feature;
     // Now, `newProduct` contains the values from the form controls.
@@ -74,12 +84,12 @@ export class FeatureComponent {
 
   editFeature() {
     if (this.selectedFeatureId === undefined) {
-      console.log('select valid feature id');
+      alert('Please select a valid Feature ID.');
     } else {
       const updatedFeature: Feature = this.featureForm.value as Feature;
       this.featureService.editFeature(this.selectedFeatureId, updatedFeature).subscribe(() => {
         this.loadData(); // Refresh the product list after editing
-        console.log('Feature updated successfully');
+        alert('Feature updated successfully');
       });
       this.featureForm.reset();
       this.showEditForm = false;
@@ -92,13 +102,13 @@ export class FeatureComponent {
 
   addParameterToFeature() {
     if (this.selectedFeatureId === undefined) {
-      console.log('Please select a valid Parameter ID.');
+      alert('Please select a valid Parameter ID.');
     }
     else{
     const newParameter: Parameter = this.parameterForm.value as Parameter;
     this.featureService.addParameterToFeature(this.selectedFeatureId,newParameter).subscribe(() => {
       this.loadData(); // Refresh the product list after adding
-      console.log('Parameter added');
+      alert('Parameter added');
     });
     this.parameterForm.reset();
     this.showAddParameterForm = false;
@@ -107,7 +117,7 @@ export class FeatureComponent {
 
 loadParametersByFeatureId() {
   if (this.selectedFeatureId === undefined) {
-    console.log('Please select a valid Feature ID.');
+    alert('Please select a valid Feature ID.');
   } else {
     this.featureService.getParametersByFeatureId(this.selectedFeatureId).subscribe(res => {
       this.parameters = res;
@@ -115,5 +125,18 @@ loadParametersByFeatureId() {
     });
   }
 }
+
+loadFeaturesByProductId(selectedProductId: number | undefined) {
+  if (this.selectedProductId === undefined) {
+    console.log('Please select a valid Product ID.');
+  } else {
+    this.productService.getFeaturesByProductId(this.selectedProductId).subscribe(res => {
+      this.data = res;
+      this.selectedProductFeatures = res; // Update selectedProductFeatures
+    });
+  }
+}
+
+
 
 }

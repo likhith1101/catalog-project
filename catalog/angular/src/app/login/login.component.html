@@ -1,13 +1,21 @@
 <div class="container">
   <h2>Login</h2>
   <form #loginForm="ngForm" method="post" (ngSubmit)="login(loginForm)">
-    
-    <label for="username">username:</label>
+    <label for="username">Username:</label>
     <input type="email" id="email" name="username" ngModel required />
 
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" ngModel required />
 
-    <button type="submit" class="btn-login">login</button>
+    <div>
+      <label *ngIf="false"> <!-- This condition makes the label and its contents never display -->
+        <input type="radio" name="role" value="admin" ngModel required /> Admin
+      </label>
+      <label *ngIf="false"> <!-- This condition makes the label and its contents never display -->
+        <input type="radio" name="role" value="user" ngModel required /> User
+      </label>
+    </div>
+
+    <button type="submit" class="btn-login">Login</button>
   </form>
 </div>

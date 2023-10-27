@@ -1,8 +1,9 @@
 <h3>Products</h3>
+<button (click)="toggleAddForm()">Add Product</button>
 <div class="product-container">
   <div *ngFor="let product of data" class="product-card">
     <div class="product-info">
-      <p><strong>ID:</strong> {{ product.id }}</p>
+      <p><strong>ProductID:</strong> {{ product.id }}</p>
       <p><strong>Name:</strong> {{ product.name }}</p>
       <p><strong>Internal Name:</strong> {{ product.internalName }}</p>
       <p><strong>Details:</strong> {{ product.details }}</p>
@@ -17,6 +18,19 @@
 
 
 
+  
+<!-- <div>
+  <label for="productIdSelect">Select Product by ID:</label>
+  <select id="productIdSelect" [(ngModel)]="selectedProductId">
+    <option *ngFor="let product of  data" [value]="product.id">{{ product.id }}</option>
+  </select>
+  <button (click)="deleteProduct()">Delete</button>
+</div> -->
+
+
+  
+
+<div>
 <div *ngIf="showAddForm" class="modal">
   <div class="modal-content">
     <form [formGroup]="productForm">
@@ -73,6 +87,8 @@
 
 
 
+
+
 <!-- Edit Product Form -->
 
 <div *ngIf="showEditForm">
@@ -103,10 +119,10 @@
 </div>
 
 <!-- your-component.component.html -->
-
+<!-- 
 <h3>Features</h3>
 
-Dropdown to select a product by its ID
+
 <div>
   <label for="productIdSelect">Select Product by ID:</label>
   <select id="productIdSelect" [(ngModel)]="selectedProductId">
@@ -124,7 +140,7 @@ Dropdown to select a product by its ID
       <p><strong>Details:</strong> {{ feature.details }}</p>
     </div>
   </div>
-</div>
+</div> -->
 
 
 

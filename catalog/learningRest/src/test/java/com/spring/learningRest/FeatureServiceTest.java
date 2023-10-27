@@ -1,102 +1,91 @@
-// package com.spring.learningRest;
+package com.spring.learningRest;
 
-// import com.spring.learningRest.entity.Feature;
-// import com.spring.learningRest.entity.Product;
-// import com.spring.learningRest.repository.FeatureRepository;
-// import com.spring.learningRest.repository.ProductRepository;
-// import com.spring.learningRest.service.FeatureService;
-// import com.spring.learningRest.service.ProductService;
 
-// import org.junit.jupiter.api.BeforeEach;
-// import org.junit.jupiter.api.Test;
-// import org.mockito.InjectMocks;
-// import org.mockito.Mock;
-// import org.mockito.Mockito;
-// import org.mockito.MockitoAnnotations;
-// import org.springframework.boot.test.context.SpringBootTest;
-// import java.util.ArrayList;
-// import java.util.List;
-// import java.util.Optional;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.boot.test.context.SpringBootTest;
 
-// import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.mockito.Mockito.when;
+import com.spring.learningRest.entity.Feature;
+import com.spring.learningRest.repository.FeatureRepository;
+import com.spring.learningRest.service.FeatureService;
 
-// @SpringBootTest
-// public class FeatureServiceTest {
+import java.util.Optional;
 
-//     @InjectMocks
-//     private FeatureService featureService;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
-//     @Mock
-//     private FeatureRepository featureRepository;
+@SpringBootTest
+public class FeatureServiceTest {
 
-//     @BeforeEach
-//     public void init() {
-//         MockitoAnnotations.openMocks(this);
-//     }
-   
-    
-   
+    @InjectMocks
+    private FeatureService featureService;
 
-// // @Test
-// //    public void testGetAllProducts() {
-// //        // Create a list of products for testing
-// //        List<Product> products = new ArrayList<>();
-// //        products.add(new Product(1L, "Product 1", "Internal 1", "Details 1", 10));
-// //        products.add(new Product(2L, "Product 2", "Internal 2", "Details 2", 5));
-// //
-// //        when(productRepository.findAll()).thenReturn(products);
-// //
-// //        List<Product> result = productService.getAllProducts();
-// //
-// //        // Assert that the result from the service is the same as the one we provided
-// //        assertEquals(products, result);
-// //    }
+    @Mock
+    private FeatureRepository featureRepository;
 
-    
+    @Test
+    public void testEditFeature() {
+        // Arrange
+        Long featureId = 1L;
+        Feature existingFeature = new Feature();
+        existingFeature.setId(featureId);
+        existingFeature.setName("Old Name");
 
-//     @Test
-//     public void testEditFeature() {
-//         // Create a sample product for testing
-//     	Feature sampleFeature = new Feature();
-//     	sampleFeature.setId(1L);
-//     	sampleFeature.setName("Sample Product");
-//     	sampleFeature.setInternalName("Internal Sample");
-//     	sampleFeature.setDetails("Sample Details");
-    	
-//         // Mock the repository behavior
-//         when(featureRepository.findById(1L)).thenReturn(Optional.of(sampleFeature));
-//         when(featureRepository.save(sampleFeature)).thenReturn(sampleFeature);
+        Feature updatedFeature = new Feature();
+        updatedFeature.setId(featureId);
+        updatedFeature.setName("New Name");
 
-// //        Product updatedProduct = new Product(1L, "Updated Product", "Internal Updated", "Updated Details", 30);
-//         Feature updatedFeature = new Feature();
-//     	updatedFeature.setId(1L);
-//     	updatedFeature.setName("Updated Product");
-//     	updatedFeature.setInternalName("Internal Updated");
-//     	updatedFeature.setDetails("Updated Details");
- 
-//         Feature result = featureService.editFeature(1L, updatedFeature);
+        when(featureRepository.findById(featureId)).thenReturn(Optional.of(existingFeature));
+        when(featureRepository.save(existingFeature)).thenReturn(updatedFeature);
 
-//         // Assert that the result is the same as the updated product
-//         assertEquals(updatedFeature, result);
-//     }
+        // Act
+        Feature result = featureService.editFeature(featureId, updatedFeature);
 
-//     @Test
-//     public void testAddFeature() {
-//         // Create a sample product for testing
-//     	Feature sampleFeature = new Feature();
-//     	sampleFeature.setId(1L);
-//     	sampleFeature.setName("Sample Product");
-//     	sampleFeature.setInternalName("Internal Sample");
-//     	sampleFeature.setDetails("Sample Details");
-    	
-//         // Mock the repository behavior
-//         when(featureRepository.save(sampleFeature)).thenReturn(sampleFeature);
+        // Assert
+        assertNotNull(result);
+        assertEquals("New Name", result.getName());
+    }
 
-//         Feature result = featureService.addFeature(sampleFeature);
+    @Test
+    public void testEditFeatureFeatureNotFound() {
+        // Arrange
+        Long featureId = 1L;
+        Feature updatedFeature = new Feature();
 
-//         // Assert that the result is the same as the sample product
-//         assertEquals(sampleFeature, result);
-//     }
-// }
+        when(featureRepository.findById(featureId)).thenReturn(Optional.empty());
 
+        // Act
+        Feature result = featureService.editFeature(featureId, updatedFeature);
+
+        // Assert
+        assertNull(result);
+    }
+
+    @Test
+    public void testAddFeature() {
+        // Arrange
+        Feature newFeature = new Feature();
+        newFeature.setName("New Feature");
+
+        when(featureRepository.save(any(Feature.class))).thenReturn(newFeature);
+
+        // Act
+        Feature result = featureService.addFeature(newFeature);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals("New Feature", result.getName());
+    }
+
+    @Test
+    public void testAddFeatureInvalidData() {
+        // Arrange
+        when(featureRepository.save(any(Feature.class))).thenReturn(null);
+
+        // Act and Assert
+        assertThrows(IllegalArgumentException.class, () -> featureService.addFeature(null));
+    }
+}

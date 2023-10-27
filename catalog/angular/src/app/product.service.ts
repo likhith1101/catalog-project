@@ -35,6 +35,12 @@ addProduct(newProduct:Product): Observable<String> {
     return this.http.put<Product>(url, updatedProduct);
   }
 
+  deleteProduct(productId: number): Observable<Product> {
+    const url = `${this.baseUrl}/${productId}`; // Use the actual URL for updating a product by productId
+
+    return this.http.delete<Product>(url);
+  }
+
   addFeatureToProduct(productId:number, newFeature:Feature): Observable<Feature> {
 	// Use the actual URL and payload for your specific API.
 	const url = `${this.baseUrl}/${productId}/add-feature`; // Use the actual URL for updating a product by productId

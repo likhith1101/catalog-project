@@ -29,6 +29,13 @@ public class FeatureController {
     private FeatureRepository featureRepository;
     @Autowired
     private FeatureService featureService;
+
+    @Autowired
+    public FeatureController(FeatureRepository featureRepository, FeatureService featureService) {
+        this.featureRepository = featureRepository;
+        this.featureService = featureService;
+    }
+
     // @Autowired
     // private ParameterRepository parameterRepository;
 

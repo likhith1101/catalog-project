@@ -1,41 +1,59 @@
-.parameter-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
+/* Card container style */
 .parameter-card {
   border: 1px solid #ccc;
-  border-radius: 8px; /* Rounded corners for the card */
-  padding: 10px;
+  border-radius: 5px;
   margin: 10px;
-  width: calc(33.33% - 20px); /* Adjust based on your layout */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s; /* Add a smooth hover effect */
+  padding: 10px;
+  width: 300px;
+  display: inline-block;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
 }
 
 .parameter-card:hover {
-  transform: scale(1.02); /* Enlarge the card on hover */
+  transform: translateY(-3px);
 }
 
-.parameter-info {
-  padding: 10px;
+/* Heading style */
+.parameter-card h4 {
+  font-size: 18px;
+  margin: 0;
 }
 
-.parameter-actions {
-  text-align: center;
-  padding: 10px;
+/* Parameter details style */
+.parameter-card p {
+  font-size: 14px;
+  margin: 0;
+  margin-top: 5px;
 }
 
-/* Button styling within .parameter-actions */
-.parameter-actions button {
-  background-color: #007BFF; /* Blue background color */
-  color: #fff; /* White text color */
-  padding: 10px 20px; /* Padding around the text */
-  border: none; /* Remove border */
-  cursor: pointer; /* Add pointer cursor on hover */
-  margin-right: 10px; /* Add spacing between buttons */
+/* Edit button style */
+.edit-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
-.parameter-actions button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+.edit-button:hover {
+  background-color: #0056b3;
 }
+
+button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+

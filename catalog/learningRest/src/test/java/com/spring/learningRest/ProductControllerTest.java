@@ -1,122 +1,234 @@
 package com.spring.learningRest;
 
-import com.spring.learningRest.controller.ProductController;
-import com.spring.learningRest.entity.Product;
-import com.spring.learningRest.repository.ProductRepository;
-import com.spring.learningRest.service.ProductService;
 
+import com.spring.learningRest.controller.ProductController;
+import com.spring.learningRest.controller.exceptions.ResourceNotFoundException;
+import com.spring.learningRest.entity.Product;
+import com.spring.learningRest.entity.Feature;
+import com.spring.learningRest.repository.ProductRepository;
+import com.spring.learningRest.repository.FeatureRepository;
+import com.spring.learningRest.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-@SpringBootTest
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+
 public class ProductControllerTest {
 
-    @Autowired
     private ProductController productController;
-
-    @MockBean
     private ProductRepository productRepository;
-
-    @MockBean
     private ProductService productService;
+    private FeatureRepository featureRepository;
 
+    @BeforeEach
+    public void setUp() {
+        productRepository = mock(ProductRepository.class);
+        productService = mock(ProductService.class);
+        featureRepository = mock(FeatureRepository.class);
 
-
-    @Test
-    void testGetProductById() {
-        // Mock a Product instance
-        Product mockProduct = new Product();
-        mockProduct.setId(1L);
-        mockProduct.setName("Test Product");
-
-        // When productRepository.findById() is called, return the mockProduct
-        when(productRepository.findById(1L)).thenReturn(java.util.Optional.of(mockProduct));
-
-        ResponseEntity<Product> response = productController.getProductById(1L);
-
-        // Check if the response status is OK
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        // Check if the returned product matches the mockProduct
-        assertEquals(mockProduct, response.getBody());
+        productController = new ProductController(productRepository, productService, featureRepository);
     }
 
     @Test
-    void testGetProductByIdNotFound() {
-        // When productRepository.findById() is called with an invalid ID, return null
-        when(productRepository.findById(2L)).thenReturn(java.util.Optional.empty());
+    public void testGetAllProducts() {
+        // Arrange
+        List<Product> productList = new ArrayList<>();
+        when(productService.getAllProducts()).thenReturn(productList);
 
-        ResponseEntity<Product> response = productController.getProductById(2L);
+        // Act
+        List<Product> result = productController.getAllProducts();
 
-        // Check if the response status is NOT FOUND
+        // Assert
+        assertEquals(productList, result);
+    }
+
+    @Test
+    public void testGetProductById() {
+        // Arrange
+        Long productId = 1L;
+        Product product = new Product();
+        when(productRepository.findById(productId)).thenReturn(Optional.of(product));
+
+        // Act
+        ResponseEntity<Product> response = productController.getProductById(productId);
+
+        // Assert
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(product, response.getBody());
+    }
+
+    @Test
+    public void testGetProductByIdNotFound() {
+        // Arrange
+        Long productId = 1L;
+        when(productRepository.findById(productId)).thenReturn(Optional.empty());
+
+        // Act
+        ResponseEntity<Product> response = productController.getProductById(productId);
+
+        // Assert
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
     @Test
-    void testAddProduct() {
-        // Mock a Product instance to be added
-        Product mockProduct = new Product();
-        mockProduct.setName("New Product");
+    public void testAddProduct() {
+        // Arrange
+        Product newProduct = new Product();
+        Product savedProduct = new Product();
+        when(productService.addProduct(newProduct)).thenReturn(savedProduct);
 
-        // When productService.addProduct() is called with any Product, return the mockProduct
-        when(productService.addProduct(any(Product.class))).thenReturn(mockProduct);
+        // Act
+        ResponseEntity<Product> response = productController.addProduct(newProduct);
 
-        ResponseEntity<Product> response = productController.addProduct(mockProduct);
-
-        // Check if the response status is CREATED
+        // Assert
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        // Check if the returned product matches the mockProduct
-        assertEquals(mockProduct, response.getBody());
+        assertEquals(savedProduct, response.getBody());
     }
 
     @Test
-    void testAddProductError() {
-        // Mock a scenario where adding a product results in an error
-        when(productService.addProduct(any(Product.class))).thenThrow(new IllegalArgumentException("Invalid product"));
+    public void testAddProductError() {
+        // Arrange
+        Product newProduct = new Product();
+        when(productService.addProduct(newProduct)).thenThrow(new IllegalArgumentException("Invalid product"));
 
-        ResponseEntity<Product> response = productController.addProduct(new Product());
+        // Act
+        ResponseEntity<Product> response = productController.addProduct(newProduct);
 
-        // Check if the response status is OK
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        // Check if the response contains an error product with the name "Error"
+        // Assert
         assertEquals("Error", response.getBody().getName());
     }
 
     @Test
-    void testEditProduct() {
-        // Mock a Product instance to be updated
+    public void testEditProduct() {
+        // Arrange
+        Long productId = 1L;
         Product updatedProduct = new Product();
-        updatedProduct.setId(1L);
-        updatedProduct.setName("Updated Product");
+        updatedProduct.setName("UpdatedProduct");
 
-        // When productService.editProduct() is called, return the updatedProduct
-        when(productService.editProduct(1L, updatedProduct)).thenReturn(updatedProduct);
+        Product existingProduct = new Product();
+        when(productService.editProduct(eq(productId), any())).thenReturn(existingProduct);
 
-        ResponseEntity<Product> response = productController.editProduct(1L, updatedProduct);
+        // Act
+        ResponseEntity<Product> response = productController.editProduct(productId, updatedProduct);
 
-        // Check if the response status is OK
+        // Assert
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        // Check if the returned product matches the updatedProduct
-        assertEquals(updatedProduct, response.getBody());
+        assertEquals(existingProduct, response.getBody());
     }
 
     @Test
-    void testEditProductNotFound() {
-        // When productService.editProduct() is called with an invalid ID, return null
-        when(productService.editProduct(2L, new Product())).thenReturn(null);
+    public void testEditProductNotFound() {
+        // Arrange
+        Long productId = 1L;
+        Product updatedProduct = new Product();
+        when(productService.editProduct(eq(productId), any())).thenReturn(null);
 
-        ResponseEntity<Product> response = productController.editProduct(2L, new Product());
+        // Act
+        ResponseEntity<Product> response = productController.editProduct(productId, updatedProduct);
 
-        // Check if the response status is NOT FOUND
+        // Assert
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
+    @Test
+    public void testAddFeatureToProduct() {
+        // Arrange
+        Long productId = 1L;
+        Product product = new Product();
+        Feature newFeature = new Feature();
+
+        when(productRepository.findById(productId)).thenReturn(Optional.of(product));
+        when(featureRepository.save(newFeature)).thenReturn(newFeature);
+
+        // Act
+        ResponseEntity<Product> response = productController.addFeatureToProduct(productId, newFeature);
+
+        // Assert
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(product, response.getBody());
+        assertEquals(1, product.getFeatures().size());
+        assertEquals(newFeature, product.getFeatures().get(0));
+    }
+
+    @Test
+    public void testAddFeatureToProductNotFound() {
+        // Arrange
+        Long productId = 1L;
+        when(productRepository.findById(productId)).thenReturn(Optional.empty());
+
+        // Act
+        ResponseEntity<Product> response = productController.addFeatureToProduct(productId, new Feature());
+
+        // Assert
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
+    @Test
+    public void testGetFeaturesByProductId() {
+        // Arrange
+        Long productId = 1L;
+        Product product = new Product();
+        List<Feature> features = new ArrayList<>();
+        features.add(new Feature());
+        features.add(new Feature());
+
+        product.setFeatures(features);
+        when(productRepository.findById(productId)).thenReturn(Optional.of(product));
+
+        // Act
+        List<Feature> result = productController.getFeaturesByProductId(productId);
+
+        // Assert
+        assertEquals(features, result);
+    }
+
+    @Test
+    public void testGetFeaturesByProductIdNotFound() {
+        // Arrange
+        Long productId = 1L;
+        when(productRepository.findById(productId)).thenReturn(Optional.empty());
+
+        // Act and Assert
+        try {
+            productController.getFeaturesByProductId(productId);
+        } catch (ResourceNotFoundException ex) {
+            assertEquals("Product not found with ID: 1", ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testDeleteProduct() {
+        // Arrange
+        Long productId = 1L;
+        Product product = new Product();
+        when(productRepository.findById(productId)).thenReturn(Optional.of(product));
+
+        // Act
+        ResponseEntity<String> response = productController.deleteProduct(productId);
+
+        // Assert
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals("Product with ID 1 has been deleted.", response.getBody());
+    }
+
+    @Test
+    public void testDeleteProductNotFound() {
+        // Arrange
+        Long productId = 1L;
+        when(productRepository.findById(productId)).thenReturn(Optional.empty());
+
+        // Act
+        ResponseEntity<String> response = productController.deleteProduct(productId);
+
+        // Assert
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 }

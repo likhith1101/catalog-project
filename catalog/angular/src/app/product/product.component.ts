@@ -27,7 +27,7 @@ export class ProductComponent implements OnInit {
 
   selectedProductFeatures: Feature[] = [];
 
-
+  showDeleteConfirmation = false;
 
   constructor(public authService: AuthService, private productService: ProductService, private featureService: FeatureService, private formBuilder: FormBuilder) {
     this.productForm = this.formBuilder.group({
@@ -103,6 +103,37 @@ export class ProductComponent implements OnInit {
       });
       this.productForm.reset();
       this.showEditForm = false;
+    }
+  }
+
+ 
+  setDeleteConfirmation(productId: number | undefined) {
+    this.selectedProductId = productId;
+    this.showDeleteConfirmation = true;
+  }
+
+  cancelDelete() {
+    this.selectedProductId = undefined;
+    this.showDeleteConfirmation = false;
+  }
+
+  deleteProduct() {
+    if (this.selectedProductId === undefined) {
+      console.log('Please select a valid Product ID.');
+    } else {
+      this.productService.deleteProduct(this.selectedProductId).subscribe(
+        () => {
+          console.log('Product deleted successfully');
+          this.loadData(); // Refresh the product list after deleting
+        },
+        (error) => {
+          console.error('Error deleting product', error);
+          // Handle error, e.g., show an error message
+        }
+      );
+
+      this.selectedProductId = undefined;
+      this.showDeleteConfirmation = false;
     }
   }
 

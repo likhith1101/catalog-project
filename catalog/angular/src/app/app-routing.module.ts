@@ -11,6 +11,11 @@ import { SummaryComponent } from './summary/summary.component';
 import { AdminGuard } from './admin.guard';
 import { UserGuard } from './user.guard'; // Correct the import statement if needed
 
+
+
+
+
+
 const routes: Routes = [
   {
     path: '',
@@ -26,11 +31,12 @@ const routes: Routes = [
       { path: 'product', component: ProductComponent, canActivate: [AdminGuard] },
       { path: 'feature', component: FeatureComponent, canActivate: [AdminGuard] },
       { path: 'parameter', component: ParameterComponent, canActivate: [AdminGuard] },
-      { path: 'summary', component: SummaryComponent, canActivate: [UserGuard] },
+      { path: 'summary', component: SummaryComponent },
     ]
   },
   // Remove the section related to 'login' module
   { path: '', redirectTo: '/login', pathMatch: 'full' },
+ 
 ];
 
 @NgModule({

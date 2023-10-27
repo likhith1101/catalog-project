@@ -1,89 +1,90 @@
-/* Add some spacing between buttons inside .product-card */
-.product-card .product-actions button {
-  margin-right: 10px; /* Add right margin to create space between buttons */
-}
-
+/* Styles for the Features section */
 .product-container {
   display: flex;
   flex-wrap: wrap;
+  gap: 20px;
 }
 
 .product-card {
   border: 1px solid #ccc;
-  border-radius: 8px; /* Rounded corners for the card */
-  padding: 10px;
+  border-radius: 5px;
   margin: 10px;
-  width: calc(33.33% - 20px); /* Adjust based on your layout */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s; /* Add a smooth hover effect */
+  padding: 10px;
+  width: 300px;
+  display: inline-block;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
 }
 
 .product-card:hover {
-  transform: scale(1.02); /* Enlarge the card on hover */
+  transform: translateY(-3px);
+}
+
+/* Heading style */
+.product-card h4 {
+  font-size: 18px;
+  margin: 0;
+}
+
+/* Parameter details style */
+.product-card p {
+  font-size: 14px;
+  margin: 0;
+  margin-top: 5px;
 }
 
 .product-info {
   padding: 10px;
 }
 
-.product-actions {
-  text-align: center;
-  padding: 10px;
+.product-actions button {
+  margin: 5px;
+  padding: 5px 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
+.product-actions button:hover {
+  background-color: #0056b3;
+}
+
+/* Styles for the Parameters section */
+#featureIdSelect, #feature {
+  margin-top: 10px;
+}
+
+/* Styles for the Parameters table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Additional styling for buttons */
 button {
-  background-color: #007BFF; /* Blue background color */
-  color: #fff; /* White text color */
-  padding: 10px 20px; /* Padding around the text */
-  border: none; /* Remove border */
-  cursor: pointer; /* Add pointer cursor on hover */
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-}
-
-/* Style for forms */
-form {
-  margin: 20px; /* Add margin around the form */
-}
-
-label {
-  font-weight: bold; /* Make labels bold */
-  margin-right: 10px; /* Add spacing between labels and input fields */
-}
-
-input[type="text"],
-input[type="number"],
-textarea {
-  width: 100%; /* Make input fields and textarea full width */
-  padding: 5px; /* Add padding to input fields */
-  margin-bottom: 10px; /* Add spacing between input fields */
-}
-
-select {
-  width: 100%; /* Make select elements full width */
-  padding: 5px; /* Add padding to select elements */
-  margin-bottom: 10px; /* Add spacing between select elements */
-}
-
-/* Style for modal */
-.modal {
-  display: none; /* Hide the modal by default */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-}
-
-.modal-content {
-  background-color: #fff;
-  width: 50%;
-  margin: 0 auto;
-  padding: 20px;
-  border-radius: 5px;
-  position: relative;
-  top: 30%;
+  background-color: #0056b3;
 }
