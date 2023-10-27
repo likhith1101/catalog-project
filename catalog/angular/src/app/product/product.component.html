@@ -1,7 +1,8 @@
+<!-- Your existing HTML code for displaying products and the Edit Product Form -->
 <h3>Products</h3>
 <button (click)="toggleAddForm()">Add Product</button>
 <div class="product-container">
-  <div *ngFor="let product of data" class="product-card">
+  <div *ngFor="let product of data; let i = index" class="product-card">
     <div class="product-info">
       <p><strong>ProductID:</strong> {{ product.id }}</p>
       <p><strong>Name:</strong> {{ product.name }}</p>
@@ -10,152 +11,102 @@
       <p><strong>Max Products per Location:</strong> {{ product.maxProductsPerLocation }}</p>
     </div>
     <div class="product-actions">
-      <button (click)="toggleEditForm()">Edit</button>
-      <button (click)="toggleAddFeatureForm()">Add Features</button>
+      <button (click)="toggleEditForm(product)">Edit</button>
+      <button (click)="toggleAddFeatureForm(product.id)">Add Features</button>
+      <button (click)="toggleLoadFeatureForm(product.id)">Load Features</button>
     </div>
   </div>
 </div>
 
-
-
-  
-<!-- <div>
-  <label for="productIdSelect">Select Product by ID:</label>
-  <select id="productIdSelect" [(ngModel)]="selectedProductId">
-    <option *ngFor="let product of  data" [value]="product.id">{{ product.id }}</option>
-  </select>
-  <button (click)="deleteProduct()">Delete</button>
-</div> -->
-
-
-  
-
 <div>
-<div *ngIf="showAddForm" class="modal">
-  <div class="modal-content">
-    <form [formGroup]="productForm">
-      <div>
+  <div *ngIf="showAddForm" class="modal">
+    <div class="modal-content">
+      <form [formGroup]="productForm">
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name" formControlName="name">
+        </div>
+        <div>
+          <label for="internalName">Internal Name:</label>
+          <input type="text" id="internalName" formControlName="internalName">
+        </div>
+        <div>
+          <label for="details">Details:</label>
+          <textarea id="details" formControlName="details"></textarea>
+        </div>
+        <div>
+          <label for="maxProductsPerLocation">Max Products per Location:</label>
+          <input type="number" id="maxProductsPerLocation" formControlName="maxProductsPerLocation">
+        </div>
+        <div>
+          <button (click)="addProduct()">Add it !!!</button>
+          <button (click)="closeAddProductForm()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Product Form -->
+  <div *ngIf="showEditForm" class="modal">
+    <div class="modal-content">
+      <form [formGroup]="productForm">
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name" formControlName="name" [value]="editedProduct?.name">
+        </div>
+        <div>
+          <label for="internalName">Internal Name:</label>
+          <input type="text" id="internalName" formControlName="internalName" [value]="editedProduct?.internalName">
+        </div>
+        <div>
+          <label for="details">Details:</label>
+          <textarea id="details" formControlName="details">{{ editedProduct?.details }}</textarea>
+        </div>
+        <div>
+          <label for="maxProductsPerLocation">Max Products per Location:</label>
+          <input type="number" id="maxProductsPerLocation" formControlName="maxProductsPerLocation" [value]="editedProduct?.maxProductsPerLocation">
+        </div>
+        <div>
+          <button (click)="editProduct(editedProduct?.id, productForm.value)">Save</button>
+          <button (click)="closeEditForm()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Feature Form -->
+  <div *ngIf="showAddFeatureForm" class="modal">
+    <div class="modal-content">
+      <form [formGroup]="featureForm">
         <label for="name">Name:</label>
         <input type="text" id="name" formControlName="name">
-      </div>
-      <div>
         <label for="internalName">Internal Name:</label>
         <input type="text" id="internalName" formControlName="internalName">
-      </div>
-      <div>
         <label for="details">Details:</label>
-        <textarea id="details" formControlName="details"></textarea>
-      </div>
-      <div>
-        <label for="maxProductsPerLocation">Max Products per Location:</label>
-        <input type="number" id="maxProductsPerLocation" formControlName="maxProductsPerLocation">
-      </div>
-      <div>
-        <button (click)="addProduct()">Add it !!!</button>
-        <!-- <button (click)="closeAddForm()">Cancel</button> -->
-      </div>
-    </form>
-  </div>
-</div>
-
-
-
-<div *ngIf="showAddFeatureForm">
-<form [formGroup]="featureForm">
-  <label for="name">Name:</label>
-  <input type="text" id="name" formControlName="name">
-
-  <label for="internalName">InternalName:</label>
-  <input type="text" id="internalName" formControlName="internalName">
-
-  <label for="details">Details:</label>
-  <input type="text" id="details" formControlName="details">
-</form>
-
-<!-- Dropdown for selecting a product by its ID -->
-<div>
-  <label for="productId">Select Product by ID:</label>
-  <select id="productId" [(ngModel)]="selectedProductId">
-    <option *ngFor="let product of data" [value]="product.id">{{ product.id }}</option>
-  </select>
-</div>
-
-<!-- Button to edit the selected product -->
-<button (click)="addFeatureToProduct(selectedProductId)">Add Feature</button>
-</div>
-
-
-
-
-
-
-<!-- Edit Product Form -->
-
-<div *ngIf="showEditForm">
-<form [formGroup]="productForm">
-  <label for="name">Name:</label>
-  <input type="text" id="name" formControlName="name">
-
-  <label for="internalName">InternalName:</label>
-  <input type="text" id="internalName" formControlName="internalName">
-
-  <label for="details">Details:</label>
-  <input type="text" id="details" formControlName="details">
-
-  <label for="maxProductsPerLocation">maxProductsPerLocation:</label>
-  <input type="number" id="maxProductsPerLocation" formControlName="maxProductsPerLocation">
-</form>
-
-
-<div>
-  <label for="productId">Select Product by ID:</label>
-  <select id="productId" [(ngModel)]="selectedProductId">
-    <option *ngFor="let product of data" [value]="product.id">{{ product.id }}</option>
-  </select>
-</div>
-
-<!-- Button to edit the selected product -->
-<button (click)="editProduct(selectedProductId)">Edit</button>
-</div>
-
-<!-- your-component.component.html -->
-<!-- 
-<h3>Features</h3>
-
-
-<div>
-  <label for="productIdSelect">Select Product by ID:</label>
-  <select id="productIdSelect" [(ngModel)]="selectedProductId">
-    <option *ngFor="let product of  data" [value]="product.id">{{ product.id }}</option>
-  </select>
-  <button (click)="loadFeaturesByProductId(selectedProductId)">Load Features</button>
-</div>
-
-<div class="product-container">
-  <div *ngFor="let feature of features" class="product-card">
-    <div class="product-info">
-      <p><strong>FeatureID:</strong> {{ feature.featureId }}</p>
-      <p><strong>Name:</strong> {{ feature.name }}</p>
-      <p><strong>Internal Name:</strong> {{ feature.internalName }}</p>
-      <p><strong>Details:</strong> {{ feature.details }}</p>
+        <input type="text" id="details" formControlName="details">
+        <!-- Use the selectedProductId for adding features to the selected product -->
+        <input type="hidden" id="productId" formControlName="productId" [value]="selectedProductId">
+        <button (click)="addFeatureToProduct()">Add Feature</button>
+        <button (click)="closeAddFeatureForm()">Cancel</button>
+      </form>
     </div>
   </div>
-</div> -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <!-- Load Features Form -->
+  <div *ngIf="showLoadFeatureForm" class="modal">
+    <div class="modal-content">
+      <!-- <button (click)="loadFeaturesByProductId()">View</button> -->
+      <div *ngIf="selectedProductFeatures && selectedProductFeatures.length > 0">
+        <h3>Features for Product ID {{ selectedProductId }}</h3>
+        <div class="product-card" *ngFor="let feature of selectedProductFeatures">
+          <div class="product-info">
+            <h4>{{ feature.name }}</h4>
+            <p><strong>Internal Name:</strong> {{ feature.internalName }}</p>
+            <p><strong>Details:</strong> {{ feature.details }}</p>
+          </div>
+        </div>
+      </div>
+      <button (click)="closeLoadFeatureForm()">Close</button>
+    </div>
+  </div>
+</div>

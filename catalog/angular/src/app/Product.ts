@@ -1,3 +1,4 @@
+import { FormGroup } from "@angular/forms";
 import { Feature } from "./Feature";
 import { Parameter } from "./Parameter";
 
@@ -7,5 +8,9 @@ export interface Product  {
     internalName: String,
     maxProductsPerLocation: number,
     name: String,
-    features: Feature[]
+    features: Feature[],
+    showAddFeatureForm: boolean;
+    productForm: FormGroup;
+    featureForm: FormGroup; 
 }
+

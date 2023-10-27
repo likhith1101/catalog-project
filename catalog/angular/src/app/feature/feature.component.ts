@@ -1,142 +1,139 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Feature } from '../Feature';
-import { AuthService } from '../auth.service';
 import { FeatureService } from '../feature.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ParameterService } from '../parameter.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Parameter } from '../Parameter';
-import { Product } from '../Product';
-import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-feature',
   templateUrl: './feature.component.html',
   styleUrls: ['./feature.component.css']
 })
-export class FeatureComponent {
-  data: Feature[]=[];
-  products: Product[]=[];
-  parameters: Parameter[]=[];
-  features: Feature[]=[];
+export class FeatureComponent implements OnInit {
+  data: Feature[] = [];
+  parameters: Parameter[] = [];
+  showAddForm = false;
+  showAddParameterForm = false;
+  showEditForm = false;
+  showLoadParameterForm = false;
   featureForm: FormGroup;
   parameterForm: FormGroup;
-  showAddForm: boolean = false;
-  showEditForm: boolean = false;
-  showAddParameterForm: boolean = false;
-  selectedFeatureId: number | undefined;
-  selectedProductId: number | undefined;
-  parameterTypes: string[] = ['QUANTITY','PRICE','OTHER'];
-
+  editedFeature: Feature | null = null;
+  selectedFeatureId: number | null = null;
   selectedFeatureParameters: Parameter[] = [];
 
-  selectedProductFeatures: Feature[] = [];
+  parameterTypes: string[] = ['QUANTITY','PRICE','OTHER'];
 
-  constructor(public authService: AuthService, private productService:ProductService, private featureService: FeatureService, private parameterService: ParameterService, private formBuilder: FormBuilder) {
-    this.featureForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      internalName: ['', Validators.required],
-      details: ['', Validators.required]
-   })
-   this.parameterForm = this.formBuilder.group({
-    name: ['', Validators.required],
-    internalName: ['', Validators.required],
-    details: ['', Validators.required],
-    parameterType: ['', Validators.required],
-    values:['', Validators.required]
- })
+  constructor(
+    private fb: FormBuilder,
+    private featureService: FeatureService
+  ) {
+    this.featureForm = this.fb.group({
+      name: [''],
+      internalName: [''],
+      details: [''],
+    });
+    this.parameterForm = this.fb.group({
+      name: [''],
+      internalName: [''],
+      details: [''],
+      parameterType: [''],
+      values: ['']
+    });
   }
 
-  ngOnInit() {
-    this.loadProducts();
-  }
-
-  
-
-  toggleEditForm() {
-    this.showEditForm = !this.showEditForm;
+  ngOnInit(): void {
+    this.loadData();
   }
 
   toggleAddForm() {
-    this.showAddForm = !this.showAddForm;
+    this.showAddForm = true;
   }
 
-  toggleAddParameterForm() {
-    this.showAddParameterForm = !this.showAddParameterForm;
+  toggleAddParameterForm(featureId: number) {
+    this.showAddParameterForm = true;
+    this.selectedFeatureId = featureId;
   }
 
-
-  private loadData() {
-    this.featureService.getData().subscribe(res => this.data = res);
+  toggleLoadParameterForm(featureId: number) {
+    this.showLoadParameterForm = true;
+    this.selectedFeatureId = featureId;
+    this.loadParametersByFeatureId();
   }
 
-  private loadProducts() {
-    this.productService.getData().subscribe(res => this.products = res);
+  toggleEditForm(feature: Feature) {
+    this.showEditForm = true;
+    this.editedFeature = feature;
+  }
+
+  loadData() {
+    this.featureService.getData().subscribe((res) => {
+      this.data = res;
+    });
   }
 
   addFeature() {
     const newFeature: Feature = this.featureForm.value as Feature;
-    // Now, `newProduct` contains the values from the form controls.
-    // You can call your service to add the product.
-    this.featureService.addFeature(newFeature).subscribe(res => alert('feature added'));
+    this.featureService.addFeature(newFeature).subscribe(() => {
+      this.loadData();
+      console.log('Feature added');
+    });
     this.featureForm.reset();
     this.showAddForm = false;
   }
 
-  editFeature() {
-    if (this.selectedFeatureId === undefined) {
-      alert('Please select a valid Feature ID.');
+  editFeature(featureId: number | undefined, updatedFeature: Feature) {
+    if (featureId === undefined) {
+      console.log('Please select a valid Feature ID.');
     } else {
-      const updatedFeature: Feature = this.featureForm.value as Feature;
-      this.featureService.editFeature(this.selectedFeatureId, updatedFeature).subscribe(() => {
-        this.loadData(); // Refresh the product list after editing
-        alert('Feature updated successfully');
+      this.featureService.editFeature(featureId, updatedFeature).subscribe(() => {
+        this.loadData();
+        console.log('Feature updated successfully');
       });
       this.featureForm.reset();
       this.showEditForm = false;
     }
   }
 
- 
-
-
-
   addParameterToFeature() {
-    if (this.selectedFeatureId === undefined) {
-      alert('Please select a valid Parameter ID.');
+    if (this.selectedFeatureId === null) {
+      console.log('Please select a valid Feature ID.');
+    } else {
+      const newParameter: Parameter = this.parameterForm.value as Parameter;
+      if (!newParameter) {
+        console.log('Invalid parameter data.');
+        return;
+      }
+      this.featureService.addParameterToFeature(this.selectedFeatureId, newParameter).subscribe(() => {
+        this.loadData();
+        console.log('Parameter added');
+      });
+      this.parameterForm.reset();
+      this.showAddParameterForm = false;
     }
-    else{
-    const newParameter: Parameter = this.parameterForm.value as Parameter;
-    this.featureService.addParameterToFeature(this.selectedFeatureId,newParameter).subscribe(() => {
-      this.loadData(); // Refresh the product list after adding
-      alert('Parameter added');
-    });
-    this.parameterForm.reset();
-    this.showAddParameterForm = false;
   }
-}
 
-loadParametersByFeatureId() {
-  if (this.selectedFeatureId === undefined) {
-    alert('Please select a valid Feature ID.');
-  } else {
+  loadParametersByFeatureId() {
+    if (this.selectedFeatureId === null) {
+      console.log('Please select a valid Feature ID.');
+      return; // Exit the function early if no valid ID is selected
+    }
+
     this.featureService.getParametersByFeatureId(this.selectedFeatureId).subscribe(res => {
-      this.parameters = res;
       this.selectedFeatureParameters = res; // Update selectedProductFeatures
     });
   }
-}
 
-loadFeaturesByProductId(selectedProductId: number | undefined) {
-  if (this.selectedProductId === undefined) {
-    console.log('Please select a valid Product ID.');
-  } else {
-    this.productService.getFeaturesByProductId(this.selectedProductId).subscribe(res => {
-      this.data = res;
-      this.selectedProductFeatures = res; // Update selectedProductFeatures
-    });
+  closeEditForm() {
+    this.showEditForm = false;
+    this.editedFeature = null;
   }
-}
 
+  closeAddParameterForm() {
+    this.showAddParameterForm = false;
+  }
 
-
+  closeLoadParameterForm() {
+    this.showLoadParameterForm = false;
+  }
 }

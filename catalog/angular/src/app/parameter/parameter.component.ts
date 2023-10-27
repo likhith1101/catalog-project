@@ -5,8 +5,6 @@ import { ParameterService } from '../parameter.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FeatureService } from '../feature.service';
 import { Feature } from '../Feature';
-import { ProductService } from '../product.service';
-import { Product } from '../Product';
 
 @Component({
   selector: 'app-parameter',
@@ -16,10 +14,8 @@ import { Product } from '../Product';
 export class ParameterComponent {
   data: Parameter[]=[];
   features: Feature[]=[];
-  products: Product[]=[];
   parameterForm: FormGroup;
   featureForm: FormGroup;
-  productForm: FormGroup;
   parameterTypes: string[] = ['QUANTITY','PRICE','OTHER'];
   selectedParameterId: number | undefined;
   selectedFeatureId: number | undefined;
@@ -36,7 +32,7 @@ export class ParameterComponent {
   }
 
 
-  constructor(public authService: AuthService, private productService:ProductService, private parameterService: ParameterService, private featureService: FeatureService, private formBuilder: FormBuilder) {
+  constructor(public authService: AuthService, private parameterService: ParameterService, private featureService: FeatureService, private formBuilder: FormBuilder) {
     this.parameterForm = this.formBuilder.group({
       name: ['', Validators.required],
       internalName: ['', Validators.required],
@@ -49,25 +45,14 @@ export class ParameterComponent {
     internalName: ['', Validators.required],
     details: ['', Validators.required]
    })
-   this.productForm = this.formBuilder.group({
-    name: ['', Validators.required],
-    internalName: ['', Validators.required],
-    details: ['', Validators.required],
-    maxProductsPerLocation: ['', Validators.required]
-   })
    }
 
   ngOnInit() {
-    this.loadProducts();
     this.loadFeatures();
   }
 
   private loadData() {
     this.parameterService.getData().subscribe(res => this.data = res);
-  }
-
-  private loadProducts() {
-    this.productService.getData().subscribe(res => this.products = res);
   }
 
   
