@@ -102,8 +102,7 @@ Base URL for API requests: `http://localhost:8080`
 - `internalName`: Internal name of the feature.
 - `details`: Description/details about the feature.
 - `parameters`: List of parameters associated with the feature.
-- `product`: Reference to the associated product.
-- `id`: Unique identifier (deprecated, use `featureId`).
+- `product_id`: Unique identifier (deprecated, use `featureId`).
 
 ### Parameter Schema
 - `parameterId`: Unique identifier for the parameter.
