@@ -1,209 +1,139 @@
-# OpenAPI Documentation
+# API Documentation
 
-## Description
-
-This document provides detailed documentation for the RESTful API endpoints, their descriptions, supported methods, request parameters, request bodies, and responses for various operations related to products, features, parameters, and authentication.
+This document outlines the API endpoints, request/response formats, and schemas defined in the OpenAPI specification.
 
 ## Base URL
-
-All endpoints are based on the following base URL:
-
-- Base URL: `http://localhost:8080`
+Base URL for API requests: `http://localhost:8080`
 
 ## Endpoints
 
-### Product Endpoints
+### Products
 
-#### Get Product by ID
+#### `GET /api/products/{productId}`
+- Description: Retrieve product details by ID.
+- Request: Fetches product information based on the provided ID.
+- Response: Returns the product details.
 
-- **Method:** `GET`
-- **Endpoint:** `/api/products/{productId}`
-- **Description:** Retrieves product information by ID.
-- **Request Parameters:** `productId` (integer)
-- **Response:** Product object
+#### `PUT /api/products/{productId}`
+- Description: Update product information by ID.
+- Request: Modifies product details identified by the provided ID.
+- Response: Returns the updated product information.
 
-#### Update Product
+#### `DELETE /api/products/{productId}`
+- Description: Delete a product by ID.
+- Request: Deletes the product associated with the given ID.
+- Response: Confirms successful deletion of the product.
 
-- **Method:** `PUT`
-- **Endpoint:** `/api/products/{productId}`
-- **Description:** Updates product details.
-- **Request Parameters:** `productId` (integer)
-- **Request Body:** Product object
-- **Response:** Updated Product object
+#### `POST /api/products/{productId}/add-feature`
+- Description: Add a feature to a product.
+- Request: Attaches a feature to the product specified by ID.
+- Response: Returns the updated product information after adding the feature.
 
-#### Delete Product
+#### `POST /api/products/add`
+- Description: Add a new product.
+- Request: Creates a new product with provided details.
+- Response: Returns the newly created product information.
 
-- **Method:** `DELETE`
-- **Endpoint:** `/api/products/{productId}`
-- **Description:** Deletes a product by ID.
-- **Request Parameters:** `productId` (integer)
-- **Response:** Confirmation message
+#### `GET /api/products/list`
+- Description: Retrieve a list of all products.
+- Response: Returns an array containing all available products.
 
-#### Add Feature to Product
+### Parameters
 
-- **Method:** `POST`
-- **Endpoint:** `/api/products/{productId}/add-feature`
-- **Description:** Adds a feature to a product.
-- **Request Parameters:** `productId` (integer)
-- **Request Body:** Feature object
-- **Response:** Updated Product object
+#### `PUT /api/parameters/{parameterId}`
+- Description: Update parameter details by ID.
+- Request: Modifies parameter details based on the provided ID.
+- Response: Returns the updated parameter information.
 
-#### Add New Product
+#### `DELETE /api/parameters/{parameterId}`
+- Description: Delete a parameter by ID.
+- Request: Deletes the parameter identified by the given ID.
+- Response: Confirms successful deletion of the parameter.
 
-- **Method:** `POST`
-- **Endpoint:** `/api/products/add`
-- **Description:** Adds a new product.
-- **Request Body:** Product object
-- **Response:** Newly added Product object
+#### `POST /api/parameters/add`
+- Description: Add a new parameter.
+- Request: Creates a new parameter with provided details.
+- Response: Returns the newly created parameter information.
 
-#### Get Features by Product ID
+### Features
 
-- **Method:** `GET`
-- **Endpoint:** `/api/products/{productId}/features`
-- **Description:** Retrieves features associated with a product by ID.
-- **Request Parameters:** `productId` (integer)
-- **Response:** Array of Feature objects
+#### `GET /api/features/{featureId}`
+- Description: Retrieve feature details by ID.
+- Request: Fetches feature information based on the provided ID.
+- Response: Returns the feature details.
 
-#### Get All Products
+#### `PUT /api/features/{featureId}`
+- Description: Update feature information by ID.
+- Request: Modifies feature details identified by the provided ID.
+- Response: Returns the updated feature information.
 
-- **Method:** `GET`
-- **Endpoint:** `/api/products/list`
-- **Description:** Retrieves a list of all products.
-- **Response:** Array of Product objects
+#### `DELETE /api/features/{featureId}`
+- Description: Delete a feature by ID.
+- Request: Deletes the feature associated with the given ID.
+- Response: Confirms successful deletion of the feature.
 
-### Feature Endpoints
+#### `POST /api/features/{featureId}/add-parameter`
+- Description: Add a parameter to a feature.
+- Request: Attaches a parameter to the feature specified by ID.
+- Response: Returns the updated feature information after adding the parameter.
 
-#### Get Feature by ID
+#### `POST /api/features/add`
+- Description: Add a new feature.
+- Request: Creates a new feature with provided details.
+- Response: Returns the newly created feature information.
 
-- **Method:** `GET`
-- **Endpoint:** `/api/features/{featureId}`
-- **Description:** Retrieves feature information by ID.
-- **Request Parameters:** `featureId` (integer)
-- **Response:** Feature object
+### Authentication
 
-#### Update Feature
+#### `POST /api/auth/token`
+- Description: Generate authentication token.
+- Request: Validates credentials and generates a token for authentication.
+- Response: Returns the authentication token.
 
-- **Method:** `PUT`
-- **Endpoint:** `/api/features/{featureId}`
-- **Description:** Updates feature details.
-- **Request Parameters:** `featureId` (integer)
-- **Request Body:** Feature object
-- **Response:** Updated Feature object
-
-#### Delete Feature
-
-- **Method:** `DELETE`
-- **Endpoint:** `/api/features/{featureId}`
-- **Description:** Deletes a feature by ID.
-- **Request Parameters:** `featureId` (integer)
-- **Response:** Confirmation message
-
-#### Add Parameter to Feature
-
-- **Method:** `POST`
-- **Endpoint:** `/api/features/{featureId}/add-parameter`
-- **Description:** Adds a parameter to a feature.
-- **Request Parameters:** `featureId` (integer)
-- **Request Body:** Parameter object
-- **Response:** Updated Feature object
-
-#### Add New Feature
-
-- **Method:** `POST`
-- **Endpoint:** `/api/features/add`
-- **Description:** Adds a new feature.
-- **Request Body:** Feature object
-- **Response:** Newly added Feature object
-
-#### Get Parameters by Feature ID
-
-- **Method:** `GET`
-- **Endpoint:** `/api/features/{featureId}/parameters`
-- **Description:** Retrieves parameters associated with a feature by ID.
-- **Request Parameters:** `featureId` (integer)
-- **Response:** Array of Parameter objects
-
-#### Get All Features
-
-- **Method:** `GET`
-- **Endpoint:** `/api/features/list`
-- **Description:** Retrieves a list of all features.
-- **Response:** Array of Feature objects
-
-### Parameter Endpoints
-
-#### Update Parameter
-
-- **Method:** `PUT`
-- **Endpoint:** `/api/parameters/{parameterId}`
-- **Description:** Updates parameter details.
-- **Request Parameters:** `parameterId` (integer)
-- **Request Body:** Parameter object
-- **Response:** Updated Parameter object
-
-#### Delete Parameter
-
-- **Method:** `DELETE`
-- **Endpoint:** `/api/parameters/{parameterId}`
-- **Description:** Deletes a parameter by ID.
-- **Request Parameters:** `parameterId` (integer)
-- **Response:** Confirmation message
-
-#### Add New Parameter
-
-- **Method:** `POST`
-- **Endpoint:** `/api/parameters/add`
-- **Description:** Adds a new parameter.
-- **Request Body:** Parameter object
-- **Response:** Newly added Parameter object
-
-#### Get All Parameters
-
-- **Method:** `GET`
-- **Endpoint:** `/api/parameters/list`
-- **Description:** Retrieves a list of all parameters.
-- **Response:** Array of Parameter objects
-
-### Authentication Endpoints
-
-#### User Authentication
-
-- Endpoints related to user login, registration, and token generation.
+#### `POST /api/auth/signup`
+- Description: Register a new user.
+- Request: Registers a new user with provided credentials.
+- Response: Confirms successful user registration.
 
 ## Schemas
 
-### Product
+### Feature Schema
+- `featureId`: Unique identifier for the feature.
+- `name`: Name of the feature.
+- `internalName`: Internal name of the feature.
+- `details`: Description/details about the feature.
+- `parameters`: List of parameters associated with the feature.
+- `product`: Reference to the associated product.
+- `id`: Unique identifier (deprecated, use `featureId`).
 
-- Definition of a product object and its properties.
-  - **Request Body:** Product object
-  - **Response:** Product object
+### Parameter Schema
+- `parameterId`: Unique identifier for the parameter.
+- `name`: Name of the parameter.
+- `internalName`: Internal name of the parameter.
+- `details`: Description/details about the parameter.
+- `parameterType`: Type of the parameter (QUANTITY, PRICE, OTHER).
+- `values`: Value(s) associated with the parameter.
+- `id`: Unique identifier (deprecated, use `parameterId`).
 
-### Feature
+### Product Schema
+- `id`: Unique identifier for the product.
+- `name`: Name of the product.
+- `internalName`: Internal name of the product.
+- `details`: Description/details about the product.
+- `maxProductsPerLocation`: Maximum number of products per location.
+- `features`: List of features associated with the product.
 
-- Definition of a feature object and its properties.
-  - **Request Body:** Feature object
-  - **Response:** Feature object
+### LoginBody Schema
+- `username`: Username for authentication.
+- `password`: Password for authentication.
 
-### Parameter
+### JwtResponse Schema
+- `token`: Authentication token.
+- `username`: Username of the authenticated user.
+- `role`: Role of the authenticated user.
 
-- Definition of a parameter object and its properties.
-  - **Request Body:** Parameter object
-  - **Response:** Parameter object
+### User Schema
+- `id`: Unique identifier for the user.
+- `name`: Name of the user.
+- `password`: User's password.
+- `role`: Role of the user.
 
-### LoginBody
-
-- Structure of the request body for user login.
-  - **Request Body:** LoginBody object
-  - **Response:** JWT token
-
-### JwtResponse
-
-- Response structure for JWT token generation.
-  - **Request Body:** Not applicable
-  - **Response:** JwtResponse object
-
-### User
-
-- Definition of a user object and its properties.
-  - **Request Body:** User object
-  - **Response:** Confirmation message
