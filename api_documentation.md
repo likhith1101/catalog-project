@@ -170,29 +170,40 @@ All endpoints are based on the following base URL:
 
 - Endpoints related to user login, registration, and token generation.
 
-
 ## Schemas
 
 ### Product
 
 - Definition of a product object and its properties.
+  - **Request Body:** Product object
+  - **Response:** Product object
 
 ### Feature
 
 - Definition of a feature object and its properties.
+  - **Request Body:** Feature object
+  - **Response:** Feature object
 
 ### Parameter
 
 - Definition of a parameter object and its properties.
+  - **Request Body:** Parameter object
+  - **Response:** Parameter object
 
 ### LoginBody
 
 - Structure of the request body for user login.
+  - **Request Body:** LoginBody object
+  - **Response:** JWT token
 
 ### JwtResponse
 
 - Response structure for JWT token generation.
+  - **Request Body:** Not applicable
+  - **Response:** JwtResponse object
 
 ### User
 
 - Definition of a user object and its properties.
+  - **Request Body:** User object
+  - **Response:** Confirmation message
