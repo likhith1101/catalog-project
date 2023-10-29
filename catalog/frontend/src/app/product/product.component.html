@@ -1,0 +1,125 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<!-- Your existing HTML code for displaying products and the Edit Product Form -->
+<h3>Products</h3>
+<button (click)="toggleAddForm()">Add Product</button>
+<div>
+  <div *ngIf="showAddForm" class="modal">
+    <div class="modal-content">
+      <form [formGroup]="productForm">
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name" formControlName="name">
+        </div>
+        <div>
+          <label for="internalName">Internal Name:</label>
+          <input type="text" id="internalName" formControlName="internalName">
+        </div>
+        <div>
+          <label for="details">Details:</label>
+          <textarea id="details" formControlName="details"></textarea>
+        </div>
+        <div>
+          <label for="maxProductsPerLocation">Max Products per Location:</label>
+          <input type="number" id="maxProductsPerLocation" formControlName="maxProductsPerLocation">
+        </div>
+        <div>
+          <button (click)="addProduct()">Add it !!!</button>
+          <button (click)="toggleAddForm()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+<div class="product-container">
+  <div *ngFor="let product of data; let i = index" class="product-card">
+    <div class="product-info">
+      <p><strong>ProductID:</strong> {{ product.id }}</p>
+      <p><strong>Name:</strong> {{ product.name }}</p>
+      <p><strong>Internal Name:</strong> {{ product.internalName }}</p>
+      <p><strong>Details:</strong> {{ product.details }}</p>
+      <p><strong>Max Products per Location:</strong> {{ product.maxProductsPerLocation }}</p>
+    </div>
+    <div class="product-actions">
+      <button (click)="toggleEditForm(product,i)" title="Edit">
+        <i class="fas fa-pencil-alt"></i> <!-- Pencil icon -->
+      </button>
+      <button (click)="toggleAddFeatureForm(product.id,i)" title="Add Features">
+        <i class="fas fa-plus"></i> <!-- Plus icon -->
+      </button>
+      <button (click)="toggleLoadFeatureForm(product.id,i)" title="Load Features">
+        <i class="fas fa-arrow-down"></i> <!-- Down arrow icon -->
+      </button>
+      <button (click)="deleteProduct(product.id)" title="Delete Product">
+        <i class="fas fa-times"></i> <!-- X icon -->
+      </button>
+    </div>
+    <div *ngIf="editFormVisible[i]" class="edit-form">
+      <form [formGroup]="productForm">
+        <!-- Edit form fields -->
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name" formControlName="name" [value]="editedProduct?.name">
+        </div>
+        <div>
+          <label for="internalName">Internal Name:</label>
+          <input type="text" id="internalName" formControlName="internalName" [value]="editedProduct?.internalName">
+        </div>
+        <div>
+          <label for="details">Details:</label>
+          <textarea id="details" formControlName="details">{{ editedProduct?.details }}</textarea>
+        </div>
+        <div>
+          <label for="maxProductsPerLocation">Max Products per Location:</label>
+          <input type="number" id="maxProductsPerLocation" formControlName="maxProductsPerLocation" [value]="editedProduct?.maxProductsPerLocation">
+        </div>
+        <div>
+          <button (click)="editProduct(editedProduct?.id, productForm.value,i)">Save</button>
+          <button (click)="toggleEditForm(product,i)">Cancel</button>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="addFeatureFormVisible[i]" class="add-feature-form">
+      <form [formGroup]="featureForm">
+        <!-- Add feature form fields -->
+        <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" formControlName="name">
+      </div>
+      <div>
+        <label for="internalName">Internal Name:</label>
+        <input type="text" id="internalName" formControlName="internalName">
+      </div>
+      <div>
+        <label for="details">Details:</label>
+        <input type="text" id="details" formControlName="details">
+      </div>
+        <!-- Use the product.id for adding features to the respective product -->
+        <input type="hidden" id="productId" formControlName="productId" [value]="product.id">
+        <button (click)="addFeatureToProduct(i)">Add Feature</button>
+        <button (click)="toggleAddFeatureForm(product.id,i)">Cancel</button>
+      </form>
+    </div>
+    <div *ngIf="loadFeatureFormVisible[i]" class="load-feature-form">
+      <div *ngIf="showLoadFeatureForm" class="modal">
+        <div class="modal-content">
+          <!-- <button (click)="loadFeaturesByProductId()">View</button> -->
+          <div *ngIf="selectedProductFeatures && selectedProductFeatures.length > 0">
+            <h3>Features for Product ID {{ selectedProductId }}</h3>
+            <div class="product-card" *ngFor="let feature of selectedProductFeatures">
+              <div class="product-info">
+                <h4>{{ feature.name }}</h4>
+                <p><strong>Internal Name:</strong> {{ feature.internalName }}</p>
+                <p><strong>Details:</strong> {{ feature.details }}</p>
+              </div>
+            </div>
+          </div>
+          <button (click)="toggleLoadFeatureForm(product.id,i)">Close</button>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+
+  
+</div>

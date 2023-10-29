@@ -1,0 +1,236 @@
+/* Overall page styling */
+h1 {
+  text-align: center;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: scale(1.02);
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  margin-bottom: 10px;
+}
+
+.feature-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px;
+  width: calc(50% - 20px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.feature-card:hover {
+  transform: scale(1.02);
+}
+
+.parameter-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.parameter-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  width: calc(100% - 20px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.parameter-card:hover {
+  transform: scale(1.02);
+}
+
+/* Adjustments for header sizes */
+h2 {
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+
+h3, h4 {
+  font-size: 1.25rem;
+  margin-top: 15px;
+}
+
+/* Optional: Add space between Features and Parameters */
+.feature-card {
+  margin-right: 15px;
+}
+
+/* Optional: Adjust sizes for different screen sizes */
+@media (max-width: 768px) {
+  .product-card,
+  .feature-card,
+  .parameter-card {
+    width: 100%;
+  }
+}
+
+/* Style for forms and buttons (if any) */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.btn {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Styling for Product Section */
+.product-section {
+  background-color: #FFF1E6; /* Light orange background color */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* Styling for Feature Section */
+.feature-section {
+  background-color: #E6E6FA; /* Lavender background color */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* Styling for Parameter Section */
+.parameter-section {
+  background-color: #C9FFD5; /* Pale green background color */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* Adjust font sizes for smaller screens */
+@media (max-width: 768px) {
+  .product-card {
+    width: calc(50% - 10px);
+  }
+
+  .feature-card {
+    width: calc(100% - 10px);
+  }
+
+  .parameter-card {
+    width: calc(100% - 10px);
+  }
+
+  .card-title {
+    font-size: 0.9rem;
+  }
+
+  .card-text {
+    font-size: 0.8rem;
+  }
+}
+
+.product-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px;
+  width: calc(100% - 20px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: scale(1.02);
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.card-text {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.feature-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  width: calc(50% - 20px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.feature-card:hover {
+  transform: scale(1.02);
+}
+
+.parameter-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 10px;
+  width: calc(100% - 20px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.parameter-card:hover {
+  transform: scale(1.02);
+}
+
+/* Adjustments for header sizes */
+h2 {
+  font-size: 1.25rem;
+  margin-top: 20px;
+}
+
+h3, h4 {
+  font-size: 1rem;
+  margin-top: 15px;
+}
+
+/* Optional: Adjust sizes for different screen sizes */
+@media (max-width: 768px) {
+  .product-card {
+    width: calc(50% - 10px);
+  }
+
+  .feature-card {
+    width: calc(100% - 10px);
+  }
+
+  .parameter-card {
+    width: calc(100% - 10px);
+  }
+}

@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<h3>Parameters</h3>
+<div class="product-container">
+  <div *ngFor="let parameter of data; let i = index" class="product-card">
+    <div class="product-info">
+      <p><strong>ParameterID:</strong> {{ parameter.parameterId }}</p>
+      <p><strong>Name:</strong> {{ parameter.name }}</p>
+      <p><strong>Internal Name:</strong> {{ parameter.internalName }}</p>
+      <p><strong>Details:</strong> {{ parameter.details }}</p>
+      <p><strong>ParameterType:</strong> {{ parameter.parameterType }}</p>
+      <p><strong>Values:</strong> {{ parameter.values }}</p>
+    </div>
+    <div class="product-actions">
+      <button (click)="toggleEditForm(parameter,i)" title="Edit">
+        <i class="fas fa-pencil-alt magnify-on-hover"></i> <!-- Pencil icon -->
+      </button>
+      <button (click)="deleteParameter(parameter.parameterId)" title="Delete">
+        <i class="fas fa-times magnify-on-hover"></i> <!-- X icon -->
+      </button>
+    </div>
+    <div *ngIf="editFormVisible[i]" class="edit-form">
+      <form [formGroup]="parameterForm">
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name" formControlName="name" [value]="editedParameter?.name">
+        </div>
+        <div>
+          <label for="internalName">Internal Name:</label>
+          <input type="text" id="internalName" formControlName="internalName" [value]="editedParameter?.internalName">
+        </div>
+        <div>
+          <label for="details">Details:</label>
+          <textarea id="details" formControlName="details">{{ editedParameter?.details }}</textarea>
+        </div>
+        <div>
+          <label for="parameterType">Parameter Type:</label>
+          <select id="parameterType" formControlName="parameterType">
+            <option *ngFor="let type of parameterTypes" [value]="type">{{ type }}</option>
+          </select>
+        </div>
+      
+        <label for="values">Values:</label>
+        <input type="text" id="values" formControlName="values" [value]="editedParameter?.values">
+        <div>
+          <button (click)="editParameter(editedParameter?.parameterId, parameterForm.value,i)">Save</button>
+          <button (click)="toggleEditForm(parameter,i)">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

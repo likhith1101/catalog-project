@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/trail6 # Update the PostgreSQL connection URL
-    username: trails
-    password: trails
+    url: jdbc:postgresql://localhost:5432/finaldb # Update the PostgreSQL connection URL
+    username: pop
+    password: pop
   jpa:
     properties:
       hibernate:
@@ -14,3 +14,10 @@ spring:
 jwt:
   private.key: classpath:app.key
   public.key: classpath:app.pub
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    enabled: true
+    path: /api-docs

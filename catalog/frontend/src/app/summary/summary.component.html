@@ -1,0 +1,50 @@
+<h1 class="display-4">Summary Page</h1>
+
+
+
+
+<!-- Products Section -->
+<section class="product-section">
+  <h2>Products:</h2>
+  <div class="product-container row">
+    <div *ngFor="let product of products" class="product-card col-md-4">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title"><strong>Product ID:</strong> {{ product.id }}</h5>
+          <p class="card-text"><strong>Name:</strong> {{ product.name }}</p>
+          <p class="card-text"><strong>Internal Name:</strong> {{ product.internalName }}</p>
+          <p class="card-text"><strong>Details:</strong> {{ product.details }}</p>
+          <p class="card-text"><strong>Max Products Per Location:</strong> {{ product.maxProductsPerLocation }}</p>
+        <section class="feature-section">
+          <h3>Features:</h3>
+          <div class="feature-container">
+            <div *ngFor="let feature of product.features" class="feature-card">
+              <div class="feature-info">
+                <p><strong>Feature ID:</strong> {{ feature.featureId }}</p>
+                <p><strong>Name:</strong> {{ feature.name }}</p>
+                <p><strong>Internal Name:</strong> {{ feature.internalName }}</p>
+                <p><strong>Details:</strong> {{ feature.details }}</p>
+              <section class="parameter-section">
+                <h4>Parameters:</h4>
+                <div class="parameter-container">
+                  <div *ngFor="let parameter of feature.parameters" class="parameter-card">
+                    <div class="parameter-info">
+                      <p><strong>Parameter ID:</strong> {{ parameter.parameterId }}</p>
+                      <p><strong>Name:</strong> {{ parameter.name }}</p>
+                      <p><strong>Internal Name:</strong> {{ parameter.internalName }}</p>
+                      <p><strong>Details:</strong> {{ parameter.details }}</p>
+                      <p><strong>Parameter Type:</strong> {{ parameter.parameterType }}</p>
+                      <p><strong>Values:</strong> {{ parameter.values }}</p>
+                    </div>
+                  </div>
+                </div>
+                </section>
+              </div>
+            </div>
+          </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

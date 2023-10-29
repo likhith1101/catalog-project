@@ -1,0 +1,18 @@
+<div class="container mt-5">
+    <h3 style="text-align: center; margin-bottom: 20px;">Registration Page</h3>
+    <form (ngSubmit)="onSubmit()" class="needs-validation" novalidate style="max-width: 400px; margin: 0 auto;">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" id="name" name="name" [(ngModel)]="name" required class="form-control" style="padding: 10px; width: 100%; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" id="password" name="password" [(ngModel)]="userpassword" required class="form-control" style="padding: 10px; width: 100%; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+        <div class="mb-3">
+            <label for="confirmPassword" class="form-label">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required class="form-control" style="padding: 10px; width: 100%; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+        <button type="submit" class="btn btn-primary" style="background-color: #4dff00; width: 105%; margin-top: 10px; box-sizing: border-box; height: 40px;">Submit</button>
+    </form>
+</div>

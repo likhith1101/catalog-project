@@ -1,0 +1,124 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"><!-- Your existing HTML code for displaying products and the Edit Product Form -->
+<h3>Features</h3>
+<div class="product-container">
+  <div *ngFor="let feature of data; let i = index" class="product-card">
+    <div class="product-info">
+      <p><strong>FeatureID:</strong> {{ feature.featureId }}</p>
+      <p><strong>Name:</strong> {{ feature.name }}</p>
+      <p><strong>Internal Name:</strong> {{ feature.internalName }}</p>
+      <p><strong>Details:</strong> {{ feature.details }}</p>
+    </div>
+    <div class="product-actions">
+      <button (click)="toggleEditForm(feature,i)" title="Edit">
+        <i class="fas fa-pencil-alt magnify-on-hover"></i> <!-- Pencil icon -->
+      </button>
+      <button (click)="toggleAddParameterForm(feature.featureId, i)" title="Add Parameters">
+        <i class="fas fa-plus magnify-on-hover"></i> <!-- Plus icon -->
+      </button>
+      <button (click)="toggleLoadParameterForm(feature.featureId, i)" title="Load Parameters">
+        <i class="fas fa-arrow-down magnify-on-hover"></i> <!-- Down arrow icon -->
+      </button>
+      <button (click)="deleteFeature(feature.featureId)" title="Delete">
+        <i class="fas fa-times magnify-on-hover"></i> <!-- X icon -->
+      </button>
+    </div>
+    <div *ngIf="editFormVisible[i]" class="edit-form">
+      <form [formGroup]="featureForm">
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name" formControlName="name" [value]="editedFeature?.name">
+        </div>
+        <div>
+          <label for="internalName">Internal Name:</label>
+          <input type="text" id="internalName" formControlName="internalName" [value]="editedFeature?.internalName">
+        </div>
+        <div>
+          <label for="details">Details:</label>
+          <textarea id="details" formControlName="details">{{ editedFeature?.details }}</textarea>
+        </div>
+        <div>
+          <button (click)="editFeature(editedFeature?.featureId, featureForm.value,i)">Save</button>
+          <button (click)="toggleEditForm(feature,i)">Cancel</button>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="addParameterFormVisible[i]" class="add-parameter-form">
+      <form [formGroup]="parameterForm">
+        <!-- Add feature form fields -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" formControlName="name">
+        <label for="internalName">Internal Name:</label>
+        <input type="text" id="internalName" formControlName="internalName">
+        <label for="details">Details:</label>
+        <input type="text" id="details" formControlName="details">
+        <div>
+          <label for="parameterType">Parameter Type:</label>
+          <select id="parameterType" formControlName="parameterType">
+            <option *ngFor="let type of parameterTypes" [value]="type">{{ type }}</option>
+          </select>
+        </div>
+      
+        <label for="values">Values:</label>
+        <input type="text" id="values" formControlName="values">
+        <!-- Use the product.id for adding features to the respective product -->
+        <input type="hidden" id="featureId" formControlName="featureId" [value]="feature.featureId">
+        <button (click)="addParameterToFeature(i)">Add Parameter</button>
+        <button (click)="toggleAddParameterForm(feature.featureId,i)">Cancel</button>
+      </form>
+    </div>
+    <div *ngIf="loadParameterFormVisible[i]" class="load-parameter-form">
+      <div *ngIf="showLoadParameterForm" class="modal">
+        <div class="modal-content">
+          <!-- <button (click)="loadFeaturesByProductId()">View</button> -->
+          <div *ngIf="selectedFeatureParameters && selectedFeatureParameters.length > 0">
+            <h3>Features for Feature ID {{ selectedFeatureId }}</h3>
+            <div class="product-card" *ngFor="let parameter of selectedFeatureParameters">
+              <div class="product-info">
+                <h4>{{ parameter.name }}</h4>
+                <p><strong>Internal Name:</strong> {{ parameter.internalName }}</p>
+                <p><strong>Details:</strong> {{ parameter.details }}</p>
+                <p><strong>ParameterType:</strong> {{ parameter.parameterType }}</p>
+                <p><strong>Values:</strong> {{ parameter.values }}</p>
+            </div>
+          </div>
+          <button (click)="toggleLoadParameterForm(feature.featureId, i)">Close</button>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!-- <div>
+  <div *ngIf="showAddForm" class="modal">
+    <div class="modal-content">
+      <form [formGroup]="productForm">
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name" formControlName="name">
+        </div>
+        <div>
+          <label for="internalName">Internal Name:</label>
+          <input type="text" id="internalName" formControlName="internalName">
+        </div>
+        <div>
+          <label for="details">Details:</label>
+          <textarea id="details" formControlName="details"></textarea>
+        </div>
+        <div>
+          <label for="maxProductsPerLocation">Max Products per Location:</label>
+          <input type="number" id="maxProductsPerLocation" formControlName="maxProductsPerLocation">
+        </div>
+        <div>
+          <button (click)="addProduct()">Add it !!!</button>
+          <button (click)="closeAddProductForm()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div> -->
+
+ 
+
+  
+
+  <!-- Load Features Form -->
+  
+</div>

@@ -1,0 +1,51 @@
+<section class="auth">
+  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+        class="img-fluid" alt="Sample image">
+  <div class="wrapper">
+    <div class="banner">
+      <div class="circle"></div>
+      <div class="overlay"></div>
+    </div>
+    <div class="auth-body">
+      <form #loginForm="ngForm" class="auth-form" (ngSubmit)="login(loginForm)">
+        <h3 class="auth-title">Welcome</h3>
+        <p class="auth-desc">Please enter your details</p>
+        <div class="input-group mb-3">
+          <label for="username" class="label">Username</label>
+          <div class="input-container input-group">
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Enter your username"
+              autocomplete="off"
+              required
+              ngModel
+              class="form-control"
+            />
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <label for="password" class="label">Password</label>
+          <div class="input-container input-group">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Enter your password"
+              required
+              ngModel
+              class="form-control"
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary auth-btn">Submit</button>
+        <!-- <app-auth-button></app-auth-button> -->
+        <span class="message">
+          Don't have an account?
+          <a href="/register" class="link-to">Sign up</a>
+        </span>
+      </form>
+    </div>
+  </div>
+</section>
