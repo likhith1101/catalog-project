@@ -69,7 +69,7 @@ The project structure is organized as follows:
 ## API Documentation
 
 API documentation is available using Swagger. Access the Swagger UI to test and explore the APIs:
-  - Swagger UI: [http://localhost:8080/swagger-ui.html](#swagger)
+  - Swagger UI: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui/index.html#/)
 
 ## Unit Testing
 
