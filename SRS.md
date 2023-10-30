@@ -22,8 +22,7 @@ Catalog Project is a web-based catalog management system that allows users to ma
   - Java with Spring Boot
 - Database:
   - PostgreSQL
-- Middleware:
-  - Spring Boot
+
 
 
 ## Getting Started
