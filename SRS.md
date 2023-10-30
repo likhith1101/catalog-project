@@ -64,7 +64,7 @@ The project structure is organized as follows:
   * Product Management: Add, edit, and delete products with fields for Name, Internal Name, and Details.
   * Feature Management: Add, edit, and delete features under products with fields for Name, Internal Name, and Details.
   * Parameter Management: Add, edit, and delete parameters under features with fields for Name, Internal Name, Parameter Type, and Details (limited to quantity, price, or other).
-  * Hierarchy View: View the hierarchy of products, features, and parameters in a tree structure.
+  * Hierarchy View: View the hierarchy of products, features, and parameters in hierarichal view.
 
 ## API Documentation
 
