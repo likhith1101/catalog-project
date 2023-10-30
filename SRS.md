@@ -1,6 +1,6 @@
 # Catalog Project
 
-Catalog Project is a web-based catalog management system that allows users to manage products, features, and parameters in a structured manner. It provides user authentication, CRUD operations for catalog entities, and a hierarchical tree structure view.
+Catalog Project is a web-based catalog management system that allows users to manage products, features, and parameters pages. It provides user authentication, CRUD operations for catalog entities, and a hierarchical tree structure view in the summary page.
 
 ## Table of Contents
 
